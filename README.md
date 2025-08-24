@@ -1,61 +1,191 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Perfeito! Aqui está o **README.md** pronto para você colocar no GitHub, baseado no tutorial que você me passou:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+````markdown
+# Programando Futuros - Laravel + Laragon
 
-## About Laravel
+Este repositório contém o projeto **Programando Futuros** migrado para **PHP + Laravel**, com estrutura inicial pronta para desenvolvimento em equipe.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tutorial Completo: Programando Futuros no Laravel com Laragon
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1️⃣ Instalar e testar o Laragon
 
-## Learning Laravel
+1. Baixe e instale o Laragon: [https://laragon.org/download/](https://laragon.org/download/)
+2. Abra o Laragon e clique em **Start All** para iniciar Apache e MySQL.
+3. Teste o PHP:
+   * Crie um arquivo `info.php` dentro de `C:\laragon\www\`:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+     ```php
+     <?php phpinfo();
+     ```
+   * Acesse no navegador: [http://localhost/info.php](http://localhost/info.php)
+   * Se aparecer a tela do **phpinfo()**, o PHP está funcionando.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2️⃣ Ativar extensões necessárias no PHP
 
-## Laravel Sponsors
+1. No Laragon: **Menu → PHP → php.ini**
+2. Procure as linhas:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+   ```ini
+   ;extension=fileinfo
+   ;extension=intl
+   ;extension=pdo_mysql
+   ;extension=openssl
+````
 
-### Premium Partners
+3. Remova o `;` do começo de cada linha:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+   ```ini
+   extension=fileinfo
+   extension=intl
+   extension=pdo_mysql
+   extension=openssl
+   ```
+4. Salve e reinicie o Laragon: **Menu → Restart All**
+5. Confirme no `phpinfo()` que todas estão **enabled**
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3️⃣ Configurar Auto Virtual Hosts (opcional, mas recomendado)
 
-## Code of Conduct
+1. No Laragon → **Menu → Preferences → General → Auto Virtual Hosts → On**
+2. Document Root: `C:\laragon\www`
+3. Reinicie o Laragon.
+4. Agora qualquer pasta em `C:\laragon\www\NOME` vira `http://NOME.test`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+### 4️⃣ Criar o projeto Laravel
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Abra o **Terminal do Laragon**: **Menu → Terminal**
+2. Vá para a pasta `www`:
 
-## License
+   ```bash
+   cd C:\laragon\www
+   ```
+3. Crie o projeto Laravel:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   composer create-project laravel/laravel programandofuturos
+   ```
+4. Entre na pasta do projeto:
+
+   ```bash
+   cd programandofuturos
+   ```
+5. Gere a chave de segurança:
+
+   ```bash
+   php artisan key:generate
+   ```
+6. Crie o link público para uploads:
+
+   ```bash
+   php artisan storage:link
+   ```
+
+---
+
+### 5️⃣ Configurar o banco de dados
+
+1. No Laragon → **Menu → Database → HeidiSQL** (ou phpMyAdmin)
+2. Crie o banco: `programandofuturos`
+3. No `.env` do Laravel (`C:\laragon\www\programandofuturos\.env`):
+
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=programandofuturos
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+4. Rodar migrations:
+
+   ```bash
+   php artisan migrate
+   ```
+
+---
+
+### 6️⃣ Testar o Laravel no navegador
+
+* Sem Auto Virtual Host:
+
+  ```
+  http://localhost/programandofuturos/public
+  ```
+* Com Auto Virtual Host ativo:
+
+  ```
+  http://programandofuturos.test
+  ```
+
+Você deve ver a **tela padrão do Laravel**.
+
+---
+
+### 7️⃣ Adicionar autenticação pronta com Laravel Breeze
+
+1. No terminal, ainda na pasta do projeto:
+
+   ```bash
+   composer require laravel/breeze --dev
+   php artisan breeze:install vue
+   npm install
+   npm run dev
+   php artisan migrate
+   ```
+2. Isso cria:
+
+   * Login e cadastro de usuários
+   * Reset de senha
+   * Dashboard básico
+3. Acesse no navegador:
+
+   ```
+   http://programandofuturos.test/login
+   ```
+
+---
+
+### 8️⃣ Estrutura recomendada para o projeto
+
+* **Views:** `resources/views`
+* **Layout Blade:** `resources/views/layouts/app.blade.php`
+* **Components Vue:** `resources/js/components`
+* **Assets:** `resources/css` e `resources/js`
+* **Controllers:** `app/Http/Controllers`
+* **Models:** `app/Models`
+* **Rotas:** `routes/web.php`
+
+---
+
+### 9️⃣ Próximos passos
+
+* Migrar páginas atuais para Blade (home, sobre, trilhas, etc.)
+* Migrar scripts JS para Vite/Vue
+* Criar Controllers e Models para lógica de dados
+* Configurar menus, dashboard e formulários
+
+---
+
+> Dica: Para equipe, todos devem clonar o projeto do GitHub, criar a branch `develop`, e trabalhar nela. Exemplo:
+
+```bash
+git clone https://github.com/SEU-USUARIO/programandoFuturos.git
+cd programandoFuturos
+git checkout -b develop
+```
+
+Todos devem ter **Laragon**, **PHP**, **Composer** e **Node.js/NPM** instalados.
+
+```
+
+Se você quiser, posso criar também **um README.md pronto com instruções de Git para equipe**, incluindo como criar a branch `develop`, fazer commits e enviar alterações ao GitHub, já formatado de forma bem didática para iniciantes.  
+
+Quer que eu faça isso agora?
+```
