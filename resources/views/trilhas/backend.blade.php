@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="trilha-container">
-    {{-- Mantivemos seu CSS diretamente aqui para facilitar --}}
+    {{-- Este é o mesmo estilo da outra página, garantindo a consistência visual --}}
     <style>
         :root {
             --background-dark-blue: #1a1a2e;

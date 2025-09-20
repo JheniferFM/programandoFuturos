@@ -124,12 +124,14 @@
             <p>Criação de interfaces com HTML, CSS e JavaScript.</p>
             <a href="/trilhas/frontend" class="trilha-button">Acessar Trilha</a>
         </div>
-        <div class="area-card coming-soon">
+
+        <div class="area-card">
             <div class="area-icon"><i class="fas fa-server"></i></div>
             <h2>Desenvolvimento Back-end</h2>
             <p>Lógica de servidores, bancos de dados e APIs.</p>
-            <span class="area-soon-tag">Em Breve</span>
+            <a href="/trilhas/backend" class="trilha-button">Acessar Trilha</a>
         </div>
+
         <div class="area-card coming-soon">
             <div class="area-icon"><i class="fas fa-mobile-alt"></i></div>
             <h2>Desenvolvimento Mobile</h2>
