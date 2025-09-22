@@ -204,20 +204,29 @@
                 <li><a href="#equipe">Equipe</a></li>
                 <li><a href="#contato">Contato</a></li>
                 @auth
-                <li class="user-dropdown">
-                    <a href="#" class="user-icon"><i class="fas fa-user-circle"></i> {{ Auth::user()->name }} <i class="fas fa-caret-down"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="{{ route('quiz.index') }}" class="dropdown-item">Minha Vocação</a>
-                        <a href="{{ route('login') }}" class="dropdown-item">Trocar de conta</a>
-                        <form method="POST" action="{{ route('logout') }}">
+                 <li class="user-dropdown">
+                 <a href="#" class="user-icon">
+                <i class="fas fa-user-circle"></i> {{ Auth::user()->name }} <i class="fas fa-caret-down"></i>
+                  </a>
+                 <div class="dropdown-menu">
+                <a href="" class="dropdown-item">Perfil</a>
+                <a href="{{ route('quiz.index') }}" class="dropdown-item">Minha Vocação</a>
+                <a href="#" class="dropdown-item">Nível: {{ Auth::user()->nivel }}</a>
+                <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="dropdown-item">Sair</button>
                         </form>
                     </div>
                 </li>
-                @else
-                <li><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-                @endauth
+               @else
+     <li class="user-dropdown">
+            <a href="#" class="user-icon"><i class="fas fa-sign-in-alt"></i> Login <i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-menu">
+                <a href="{{ route('login') }}" class="dropdown-item">Entrar com conta</a>
+                <a href="{{ route('register') }}" class="dropdown-item">Cadastrar-se</a>
+            </div>
+        </li>
+    @endauth
             </ul>
         </nav>
     </header>
