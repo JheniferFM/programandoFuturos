@@ -127,6 +127,7 @@
         }
     </style>
 
+    
     <div class="trilhas-section">
         <h1>Trilhas de Aprendizado</h1>
 
@@ -142,7 +143,7 @@
                 </div>
             </div>
             
-            <div class="trilha-card">
+            <div class="trilha-card coming-soon">
                 <div class="trilha-header">
                     <div class="trilha-icon"><i class="fas fa-server"></i></div>
                     <h2>Desenvolvimento Back-end</h2>
