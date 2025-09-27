@@ -163,17 +163,6 @@
                 </div>
                 <span class="trilha-soon-tag">Em Breve</span>
             </div>
-            
-            <div class="trilha-card coming-soon">
-                <div class="trilha-header">
-                    <div class="trilha-icon"><i class="fas fa-chart-bar"></i></div>
-                    <h2>Ciência de Dados</h2>
-                </div>
-                <div class="trilha-content">
-                    <p>Aprenda a analisar e interpretar dados para extrair insights valiosos.</p>
-                </div>
-                <span class="trilha-soon-tag">Em Breve</span>
-            </div>
         </div>
     </div>
 </section>

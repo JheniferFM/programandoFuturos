@@ -49,9 +49,25 @@
         }
         .auth-card button:hover { background-color:#ffa500; }
         .auth-card .register-link { text-align:center; margin-top:1rem; display:block; color:#00bcd4; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #00bcd4;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        .back-button:hover { color: #00e5ff; }
+        .back-button i { font-size: 1rem; }
     </style>
 
     <div class="auth-card">
+        <a href="{{ route('home') }}" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Voltar ao início
+        </a>
         <h2>Login</h2>
         <form method="POST" action="{{ route('login') }}">
             @csrf

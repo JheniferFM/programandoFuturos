@@ -147,13 +147,11 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const frontendCard = document.querySelector(".area-card:not(.coming-soon)");
-        frontendCard.addEventListener("click", (event) => {
-            // Evita que o clique no botão dispare o evento do card
-            if (!event.target.classList.contains('trilha-button') && 
-                !event.target.closest('.trilha-button')) {
-                window.location.href = "/trilhas/frontend";
-            }
+        const cards = document.querySelectorAll(".area-card:not(.coming-soon)");
+        cards.forEach(card => {
+            card.addEventListener("click", () => {
+                alert(`Você clicou na área: ${card.querySelector('h2').innerText}`);
+            });
         });
     });
 </script>

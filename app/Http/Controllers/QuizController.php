@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 class QuizController extends Controller
 {
     /**
@@ -100,13 +101,10 @@ class QuizController extends Controller
         if ($step == count($questions)) {
             $user->quiz_completed = true;
             
-            // Adiciona badge de conclusão do questionário
-            $badges = $user->badges ?? [];
-            $badges[] = 'quiz_completed';
-            $user->badges = $badges;
-            
             // Adiciona pontos bônus por completar o questionário
             $user->gamification_points += 50;
+            
+            // Verifica e
             
             // Calcula as recomendações de trilhas
             $this->calculateRecommendations($user);
@@ -143,7 +141,7 @@ class QuizController extends Controller
         return view('quiz.results', [
             'user' => $user,
             'recommendedTracks' => $user->recommended_tracks ?? [],
-            'badges' => $user->badges ?? []
+
         ]);
     }
 
@@ -254,6 +252,161 @@ class QuizController extends Controller
             }
         }
         
+        // Pergunta 4: Qual tipo de projeto mais te motiva
+        if (isset($quizResults[4])) {
+            switch ($quizResults[4]) {
+                case 'ecommerce':
+                    $trackScores['frontend'] += 2;
+                    $trackScores['backend'] += 2;
+                    break;
+                case 'jogos':
+                    $trackScores['frontend'] += 3;
+                    $trackScores['mobile'] += 2;
+                    break;
+                case 'educacao':
+                    $trackScores['frontend'] += 2;
+                    $trackScores['backend'] += 1;
+                    $trackScores['design'] += 1;
+                    break;
+                case 'saude':
+                    $trackScores['backend'] += 3;
+                    $trackScores['data'] += 2;
+                    break;
+            }
+        }
+        
+        // Pergunta 5: Você prefere trabalhar com
+        if (isset($quizResults[5])) {
+            switch ($quizResults[5]) {
+                case 'equipe':
+                    $trackScores['frontend'] += 1;
+                    $trackScores['backend'] += 1;
+                    break;
+                case 'individual':
+                    $trackScores['data'] += 2;
+                    $trackScores['backend'] += 1;
+                    break;
+                case 'lideranca':
+                    $trackScores['devops'] += 2;
+                    $trackScores['backend'] += 1;
+                    break;
+                case 'consultoria':
+                    $trackScores['backend'] += 2;
+                    $trackScores['devops'] += 1;
+                    break;
+            }
+        }
+        
+        // Pergunta 6: Qual tecnologia mais desperta sua curiosidade
+        if (isset($quizResults[6])) {
+            switch ($quizResults[6]) {
+                case 'ia':
+                    $trackScores['data'] += 3;
+                    $trackScores['backend'] += 2;
+                    break;
+                case 'blockchain':
+                    $trackScores['backend'] += 3;
+                    $trackScores['data'] += 1;
+                    break;
+                case 'iot':
+                    $trackScores['backend'] += 2;
+                    $trackScores['devops'] += 2;
+                    break;
+                case 'realidade':
+                    $trackScores['frontend'] += 3;
+                    $trackScores['mobile'] += 2;
+                    break;
+            }
+        }
+        
+        // Pergunta 7: Como você gosta de aprender
+        if (isset($quizResults[7])) {
+            switch ($quizResults[7]) {
+                case 'pratica':
+                    $trackScores['frontend'] += 1;
+                    $trackScores['mobile'] += 1;
+                    break;
+                case 'teoria':
+                    $trackScores['data'] += 2;
+                    $trackScores['backend'] += 1;
+                    break;
+                case 'videos':
+                    $trackScores['frontend'] += 1;
+                    $trackScores['design'] += 1;
+                    break;
+                case 'comunidade':
+                    $trackScores['devops'] += 1;
+                    $trackScores['backend'] += 1;
+                    break;
+            }
+        }
+        
+        // Pergunta 8: Qual área de negócio mais te interessa
+        if (isset($quizResults[8])) {
+            switch ($quizResults[8]) {
+                case 'fintech':
+                    $trackScores['backend'] += 3;
+                    $trackScores['data'] += 2;
+                    break;
+                case 'startup':
+                    $trackScores['frontend'] += 2;
+                    $trackScores['mobile'] += 2;
+                    break;
+                case 'corporativo':
+                    $trackScores['backend'] += 2;
+                    $trackScores['devops'] += 2;
+                    break;
+                case 'social':
+                    $trackScores['frontend'] += 2;
+                    $trackScores['design'] += 2;
+                    break;
+            }
+        }
+        
+        // Pergunta 9: Você se considera mais
+        if (isset($quizResults[9])) {
+            switch ($quizResults[9]) {
+                case 'detalhista':
+                    $trackScores['backend'] += 2;
+                    $trackScores['data'] += 1;
+                    break;
+                case 'rapido':
+                    $trackScores['frontend'] += 2;
+                    $trackScores['mobile'] += 1;
+                    break;
+                case 'inovador':
+                    $trackScores['design'] += 3;
+                    $trackScores['frontend'] += 1;
+                    break;
+                case 'organizador':
+                    $trackScores['devops'] += 3;
+                    $trackScores['backend'] += 1;
+                    break;
+            }
+        }
+        
+        // Pergunta 10: Qual é seu objetivo principal na programação
+        if (isset($quizResults[10])) {
+            switch ($quizResults[10]) {
+                case 'carreira':
+                    $trackScores['backend'] += 2;
+                    $trackScores['devops'] += 1;
+                    break;
+                case 'empreender':
+                    $trackScores['frontend'] += 2;
+                    $trackScores['mobile'] += 2;
+                    break;
+                case 'freelancer':
+                    $trackScores['frontend'] += 2;
+                    $trackScores['design'] += 2;
+                    break;
+                case 'hobby':
+                    $trackScores['frontend'] += 1;
+                    $trackScores['mobile'] += 1;
+                    break;
+            }
+        }
+        
         // Ordena as trilhas por score
         arsort($trackScores);
         
@@ -306,6 +459,69 @@ class QuizController extends Controller
                     'analitico' => 'Analisando dados e encontrando padrões',
                     'pratico' => 'Desenvolvendo soluções práticas para problemas reais',
                     'infraestrutura' => 'Configurando e mantendo infraestrutura de sistemas'
+                ]
+            ],
+            [
+                'question' => 'Qual tipo de projeto mais te motiva:',
+                'options' => [
+                    'ecommerce' => 'Lojas virtuais e sistemas de vendas online',
+                    'jogos' => 'Desenvolvimento de jogos e entretenimento',
+                    'educacao' => 'Plataformas educacionais e e-learning',
+                    'saude' => 'Sistemas para área da saúde e bem-estar'
+                ]
+            ],
+            [
+                'question' => 'Você prefere trabalhar com:',
+                'options' => [
+                    'equipe' => 'Em equipe, colaborando com outros desenvolvedores',
+                    'individual' => 'Sozinho, focando em suas próprias tarefas',
+                    'lideranca' => 'Liderando projetos e orientando outros',
+                    'consultoria' => 'Como consultor, resolvendo problemas específicos'
+                ]
+            ],
+            [
+                'question' => 'Qual tecnologia mais desperta sua curiosidade:',
+                'options' => [
+                    'ia' => 'Inteligência Artificial e Machine Learning',
+                    'blockchain' => 'Blockchain e criptomoedas',
+                    'iot' => 'Internet das Coisas (IoT)',
+                    'realidade' => 'Realidade Virtual e Aumentada'
+                ]
+            ],
+            [
+                'question' => 'Como você gosta de aprender:',
+                'options' => [
+                    'pratica' => 'Fazendo projetos práticos',
+                    'teoria' => 'Estudando conceitos e documentação',
+                    'videos' => 'Assistindo vídeos e tutoriais',
+                    'comunidade' => 'Participando de comunidades e fóruns'
+                ]
+            ],
+            [
+                'question' => 'Qual área de negócio mais te interessa:',
+                'options' => [
+                    'fintech' => 'Tecnologia financeira (Fintech)',
+                    'startup' => 'Startups e inovação',
+                    'corporativo' => 'Grandes empresas e sistemas corporativos',
+                    'social' => 'Projetos com impacto social'
+                ]
+            ],
+            [
+                'question' => 'Você se considera mais:',
+                'options' => [
+                    'detalhista' => 'Detalhista e perfeccionista',
+                    'rapido' => 'Rápido na execução de tarefas',
+                    'inovador' => 'Inovador e criativo',
+                    'organizador' => 'Organizador e planejador'
+                ]
+            ],
+            [
+                'question' => 'Qual é seu objetivo principal na programação:',
+                'options' => [
+                    'carreira' => 'Construir uma carreira sólida em TI',
+                    'empreender' => 'Empreender e criar meu próprio negócio',
+                    'freelancer' => 'Trabalhar como freelancer',
+                    'hobby' => 'Programar como hobby e interesse pessoal'
                 ]
             ]
         ];

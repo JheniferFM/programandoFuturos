@@ -1,527 +1,658 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados do Questionário - Programando Futuros</title>
+    
+    <!-- Fontes Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-@section('content')
+    <style>
+        /* ------------------ Variáveis CSS ------------------ */
+        :root {
+            --primary-blue: #00bcd4;
+            --secondary-orange: #ff8c00;
+            --background-dark-blue: #1a1a2e;
+            --card-background: #16213e;
+            --text-color: #e0e0e0;
+            --heading-color: #f0f0f0;
+            --accent-blue: #0f3460;
+            --border-blue: #00796b;
+            --hover-light-blue: #00e5ff;
+            --hover-light-orange: #ffa500;
+
+            --font-primary: 'Montserrat', sans-serif;
+            --font-display: 'Orbitron', sans-serif;
+        }
+
+        /* ------------------ Reset e Body ------------------ */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--background-dark-blue);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* ------------------ Cabeçalho ------------------ */
+        .tech-header {
+            background: linear-gradient(90deg, var(--card-background) 0%, rgba(22,33,62,0.8) 100%);
+            padding: 1rem 2rem;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            position: sticky;
+            top:0;
+            z-index:1000;
+            border-bottom:2px solid var(--border-blue);
+        }
+        .logo-wrapper { display:flex; align-items:center; }
+        .site-logo { height:50px; margin-right:10px; }
+        .logo-text .main-logo { font-family: var(--font-display); font-size:1.8rem; color: var(--heading-color); }
+        .logo-text .highlight-logo { font-family: var(--font-display); font-size:1.8rem; color: var(--secondary-orange); }
+        .tech-nav ul { list-style:none; display:flex; gap:1.5rem; }
+        .tech-nav ul li a {
+            color: var(--text-color);
+            font-weight:700;
+            text-decoration:none;
+            position:relative;
+            padding-bottom:5px;
+        }
+        .tech-nav ul li a::after {
+            content:'';
+            position:absolute;
+            width:0;
+            height:3px;
+            background-color: var(--primary-blue);
+            left:0;
+            bottom:0;
+            transition: width 0.3s ease-in-out;
+        }
+        .tech-nav ul li a:hover::after,
+        .tech-nav ul li a.active::after { width:100%; }
+
+        /* ------------------ Botões ------------------ */
+        .tech-button {
+            display:inline-block;
+            background-color: var(--secondary-orange);
+            color: var(--background-dark-blue);
+            padding:0.9rem 2.2rem;
+            border-radius:30px;
+            text-decoration:none;
+            font-weight:700;
+            font-size:1.1rem;
+            transition:all 0.3s ease;
+            border:2px solid var(--secondary-orange);
+            box-shadow: 0 5px 15px rgba(255,140,0,0.3);
+        }
+        .tech-button:hover { background-color: var(--hover-light-orange); border-color: var(--hover-light-orange); transform: translateY(-3px); }
+        .tech-button.pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,140,0,0.7);} 70%{transform:scale(1.05);box-shadow:0 0 0 20px rgba(255,140,0,0);} 100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,140,0,0);} }
+
+        /* ------------------ Seções ------------------ */
+        section { padding:6rem 2rem; max-width:1200px; margin:auto; }
+        .section-title { font-family: var(--font-display); font-size:2.8rem; color:var(--heading-color); text-align:center; margin-bottom:1.5rem; position:relative; padding-bottom:10px; }
+        .section-title::after { content:''; position:absolute; left:50%; bottom:0; transform:translateX(-50%); width:80px; height:4px; background-color: var(--secondary-orange); border-radius:2px; }
+        .section-subtitle { font-size:1.2rem; color:var(--text-color); text-align:center; margin-bottom:3rem; opacity:0.9; }
+
+        /* ------------------ Página de Resultados ------------------ */
+        .quiz-results-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .quiz-results-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 0;
+        }
+        
+        .quiz-results-header h1 {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            color: var(--heading-color);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(0,188,212,0.5);
+        }
+        
+        .quiz-results-header p {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fundo animado -->
+    <div id="particles-js" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1;"></div>
+
+    {{-- ------------------ Cabeçalho ------------------ --}}
+    <header class="tech-header">
+        <div class="logo-wrapper">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="site-logo">
+            <div class="logo-text">
+                <span class="main-logo">&lt;Programando</span>
+                <span class="highlight-logo">Futuros/&gt;</span>
+            </div>
+        </div>
+        <nav class="tech-nav">
+            <ul>
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <li><a href="{{ route('quiz.index') }}">Quiz</a></li>
+                @auth
+                    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" style="background: none; border: none; color: var(--text-color); font-weight: 700; cursor: pointer;">Sair</button>
+                        </form>
+                    </li>
+                @else
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                @endauth
+            </ul>
+        </nav>
+    </header>
+
 <div class="quiz-results-container">
-    <div class="quiz-results-header">
-        <h1>Seus Resultados</h1>
-        <p>Com base nas suas respostas, identificamos as trilhas que mais combinam com você!</p>
+    <!-- Botão de voltar -->
+    <div class="results-back-button">
+        <a href="{{ route('quiz.index') }}" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Voltar ao Quiz
+        </a>
     </div>
     
-    <div class="quiz-results-card">
-        <div class="quiz-completion">
-            <div class="completion-badge">
-                <i class="fas fa-trophy"></i>
-            </div>
-            <div class="completion-text">
-                <h2>Questionário Concluído!</h2>
-                <p>Você ganhou <span class="points">+50</span> pontos de gamificação</p>
-                <div class="user-points">
-                    <i class="fas fa-star"></i> {{ $user->gamification_points }} pontos totais
+    <div class="quiz-results-header">
+        <h1>🎉 Parabéns! Você completou o questionário!</h1>
+        <p>Descubra suas trilhas recomendadas e continue sua jornada de aprendizado.</p>
+    </div>
+
+    <div class="results-content">
+        <!-- User Stats -->
+        <div class="user-stats">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Pontos XP</h3>
+                    <p>{{ $user->gamification_points ?? 0 }}</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Nível</h3>
+                    <p>{{ $user->level ?? 1 }}</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>XP Total</h3>
+                    <p>{{ $user->gamification_points ?? 0 }}</p>
                 </div>
             </div>
         </div>
-        
-        <div class="quiz-recommendations">
-            <h3>Trilhas Recomendadas para Você</h3>
+
+        <!-- Recommended Tracks -->
+        <div class="recommended-tracks">
+            <h2 class="section-title">🚀 Suas Trilhas Recomendadas</h2>
+            <p class="section-subtitle">Com base nas suas respostas, estas são as trilhas que mais combinam com você:</p>
             
-            @if(count($recommendedTracks) > 0)
-                <div class="recommended-tracks">
+            @if(!empty($recommendedTracks))
+                <div class="tracks-grid">
                     @foreach($recommendedTracks as $index => $track)
-                        <div class="track-card track-{{ $index + 1 }}" data-track="{{ $track['track'] }}">
-                            <div class="track-match">
-                                <div class="match-percentage" style="--percentage: {{ $track['match_percentage'] }}%">
-                                    <span>{{ $track['match_percentage'] }}%</span>
-                                </div>
-                                <div class="match-label">compatibilidade</div>
+                        <div class="track-card {{ $index === 0 ? 'primary' : '' }}">
+                            <div class="track-rank">#{{ $index + 1 }}</div>
+                            <div class="track-header">
+                                <h3>{{ ucfirst($track['track']) }}</h3>
+                                <div class="match-percentage">{{ $track['match_percentage'] }}% Match</div>
                             </div>
-                            
-                            <div class="track-info">
-                                <div class="track-icon">
-                                    @if($track['track'] == 'frontend')
-                                        <i class="fas fa-desktop"></i>
-                                    @elseif($track['track'] == 'backend')
-                                        <i class="fas fa-server"></i>
-                                    @elseif($track['track'] == 'mobile')
-                                        <i class="fas fa-mobile-alt"></i>
-                                    @elseif($track['track'] == 'data')
-                                        <i class="fas fa-database"></i>
-                                    @elseif($track['track'] == 'devops')
-                                        <i class="fas fa-network-wired"></i>
-                                    @elseif($track['track'] == 'design')
-                                        <i class="fas fa-paint-brush"></i>
-                                    @else
-                                        <i class="fas fa-code"></i>
-                                    @endif
-                                </div>
-                                
-                                <div class="track-details">
-                                    <h4>
-                                        @if($track['track'] == 'frontend')
-                                            Front-end
-                                        @elseif($track['track'] == 'backend')
-                                            Back-end
-                                        @elseif($track['track'] == 'mobile')
-                                            Desenvolvimento Mobile
-                                        @elseif($track['track'] == 'data')
-                                            Ciência de Dados
-                                        @elseif($track['track'] == 'devops')
-                                            DevOps
-                                        @elseif($track['track'] == 'design')
-                                            Design de Interface
-                                        @else
-                                            {{ ucfirst($track['track']) }}
-                                        @endif
-                                    </h4>
-                                    <p>
-                                        @if($track['track'] == 'frontend')
-                                            Desenvolvimento de interfaces e experiências de usuário com HTML, CSS e JavaScript.
-                                        @elseif($track['track'] == 'backend')
-                                            Desenvolvimento de servidores, APIs e lógica de negócios.
-                                        @elseif($track['track'] == 'mobile')
-                                            Criação de aplicativos para dispositivos móveis.
-                                        @elseif($track['track'] == 'data')
-                                            Análise e processamento de dados, machine learning e IA.
-                                        @elseif($track['track'] == 'devops')
-                                            Infraestrutura, automação e entrega contínua.
-                                        @elseif($track['track'] == 'design')
-                                            Design de interfaces, UX/UI e experiência do usuário.
-                                        @else
-                                            Trilha de desenvolvimento de software.
-                                        @endif
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <div class="track-action">
-                                @if($track['track'] == 'frontend')
-                                    <a href="{{ url('/trilhas/frontend') }}" class="btn btn-primary">Acessar Trilha</a>
-                                @else
-                                    <button class="btn btn-secondary" disabled>Em breve</button>
-                                @endif
+                            <p class="track-description">
+                                @switch($track['track'])
+                                    @case('frontend')
+                                        Desenvolvimento de interfaces web modernas e responsivas
+                                        @break
+                                    @case('backend')
+                                        Desenvolvimento de APIs e sistemas server-side
+                                        @break
+                                    @case('mobile')
+                                        Criação de aplicativos para dispositivos móveis
+                                        @break
+                                    @case('data')
+                                        Análise de dados e ciência de dados
+                                        @break
+                                    @case('devops')
+                                        Infraestrutura e automação de sistemas
+                                        @break
+                                    @case('design')
+                                        Design de interfaces e experiência do usuário
+                                        @break
+                                    @default
+                                        Trilha de programação especializada
+                                @endswitch
+                            </p>
+                            <div class="track-actions">
+                                <a href="/trilhas/{{ $track['track'] }}" class="tech-button">Começar Trilha</a>
                             </div>
                         </div>
                     @endforeach
                 </div>
             @else
                 <div class="no-recommendations">
-                    <p>Não foi possível gerar recomendações. Por favor, tente reiniciar o questionário.</p>
+                    <p>Não foi possível gerar recomendações. Tente refazer o questionário.</p>
                 </div>
             @endif
         </div>
-        
-        <div class="quiz-badges">
-            <h3>Suas Conquistas</h3>
-            
-            <div class="badges-container">
-                @if(in_array('quiz_completed', $badges))
-                    <div class="badge-item">
-                        <div class="badge-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <div class="badge-info">
-                            <h4>Questionário Concluído</h4>
-                            <p>Você completou o questionário de vocação!</p>
-                        </div>
-                    </div>
-                @endif
-                
-                <!-- Badges futuros podem ser adicionados aqui -->
+
+
+
+        <!-- Next Steps -->
+        <div class="next-steps">
+            <h2 class="section-title">🎯 Próximos Passos</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-icon">📚</div>
+                    <h3>Explore as Trilhas</h3>
+                    <p>Comece pela trilha mais recomendada para você e avance nos módulos.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">🎮</div>
+                    <h3>Dashboard Gamificado</h3>
+                    <p>Acompanhe seu progresso e estatísticas no dashboard.</p>
+                    <a href="{{ route('dashboard') }}" class="tech-button">Ir para Dashboard</a>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">🔄</div>
+                    <h3>Refazer Questionário</h3>
+                    <p>Seus interesses mudaram? Refaça o questionário para novas recomendações.</p>
+                    <form action="{{ route('quiz.reset') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="tech-button-secondary">Refazer Quiz</button>
+                    </form>
+                </div>
             </div>
-        </div>
-        
-        <div class="quiz-actions">
-            <form action="{{ route('quiz.reset') }}" method="POST" class="d-inline">
-                @csrf
-                <button type="submit" class="btn btn-secondary">Reiniciar Questionário</button>
-            </form>
-            <a href="{{ url('/') }}" class="btn btn-outline">Voltar para Home</a>
         </div>
     </div>
 </div>
 
 <style>
-    .quiz-results-container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 2rem;
-        font-family: var(--font-family);
-    }
-    
-    .quiz-results-header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-    
-    .quiz-results-header h1 {
-        color: var(--primary-color);
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-    }
-    
-    .quiz-results-header p {
-        font-size: 1.2rem;
-        color: var(--text-color);
-    }
-    
-    .quiz-results-card {
-        background: var(--card-bg);
-        border-radius: 12px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        padding: 2rem;
-    }
-    
-    .quiz-completion {
-        display: flex;
-        align-items: center;
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .completion-badge {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, #FFD700, #FFA500);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1.5rem;
-        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-    }
-    
-    .completion-badge i {
-        font-size: 2.5rem;
-        color: white;
-    }
-    
-    .completion-text h2 {
-        color: var(--primary-color);
-        margin-bottom: 0.5rem;
-    }
-    
-    .completion-text p {
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .points {
-        color: #FFD700;
-        font-weight: bold;
-    }
-    
-    .user-points {
-        display: inline-block;
-        background: rgba(255, 215, 0, 0.1);
-        padding: 0.5rem 1rem;
-        border-radius: 50px;
-        color: #FFD700;
-        font-weight: bold;
-    }
-    
-    .user-points i {
-        margin-right: 0.3rem;
-    }
-    
-    .quiz-recommendations {
-        margin-bottom: 2rem;
-    }
-    
-    .quiz-recommendations h3,
-    .quiz-badges h3 {
-        color: var(--primary-color);
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-        position: relative;
-        padding-bottom: 0.5rem;
-    }
-    
-    .quiz-recommendations h3:after,
-    .quiz-badges h3:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 50px;
-        height: 3px;
-        background: var(--primary-color);
-        border-radius: 3px;
-    }
-    
-    .recommended-tracks {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .track-card {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        padding: 1.5rem;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        animation: fadeIn 0.5s ease-out forwards;
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    
-    .track-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    }
-    
-    .track-1 { animation-delay: 0.1s; }
-    .track-2 { animation-delay: 0.3s; }
-    .track-3 { animation-delay: 0.5s; }
-    
-    .track-match {
-        position: absolute;
-        top: 1.5rem;
-        right: 1.5rem;
-        text-align: center;
-    }
-    
-    .match-percentage {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background: conic-gradient(
-            var(--primary-color) 0%, 
-            var(--primary-color) var(--percentage), 
-            rgba(255, 255, 255, 0.1) var(--percentage), 
-            rgba(255, 255, 255, 0.1) 100%
-        );
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        margin: 0 auto;
-    }
-    
-    .match-percentage::before {
-        content: '';
-        position: absolute;
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: var(--card-bg);
-    }
-    
-    .match-percentage span {
-        position: relative;
-        z-index: 1;
-        font-weight: bold;
-        font-size: 1rem;
-    }
-    
-    .match-label {
-        font-size: 0.8rem;
-        margin-top: 0.3rem;
-        opacity: 0.7;
-    }
-    
-    .track-info {
-        display: flex;
-        margin-right: 80px;
-    }
-    
-    .track-icon {
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1rem;
-        color: white;
-        font-size: 1.5rem;
-    }
-    
-    .track-details h4 {
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-        color: var(--text-color);
-    }
-    
-    .track-details p {
-        opacity: 0.8;
-        font-size: 0.95rem;
-        line-height: 1.4;
-    }
-    
-    .track-action {
-        margin-top: 1.5rem;
-    }
-    
-    .btn {
-        padding: 0.8rem 1.5rem;
-        border-radius: 50px;
-        font-weight: bold;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-        font-size: 1rem;
-        display: inline-block;
-    }
-    
-    .btn-primary {
-        background: var(--primary-color);
-        color: white;
-    }
-    
-    .btn-primary:hover {
-        background: var(--primary-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-    
-    .btn-secondary {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text-color);
-    }
-    
-    .btn-secondary:hover:not([disabled]) {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
-    }
-    
-    .btn-secondary[disabled] {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-    
-    .btn-outline {
-        background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: var(--text-color);
-    }
-    
-    .btn-outline:hover {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 255, 255, 0.3);
-    }
-    
-    .quiz-badges {
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .badges-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-    
-    .badge-item {
-        display: flex;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        padding: 1rem;
-        flex: 1;
-        min-width: 250px;
-        animation: fadeIn 0.5s ease-out forwards;
-        opacity: 0;
-        transform: translateY(10px);
-        animation-delay: 0.7s;
-    }
-    
-    .badge-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #FFD700, #FFA500);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1rem;
-        color: white;
-        font-size: 1.2rem;
-    }
-    
-    .badge-info h4 {
-        font-size: 1.1rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    .badge-info p {
-        font-size: 0.9rem;
-        opacity: 0.8;
-    }
-    
-    .quiz-actions {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-    }
-    
-    .no-recommendations {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        padding: 2rem;
-        text-align: center;
-    }
-    
-    @keyframes fadeIn {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    @media (min-width: 768px) {
-        .recommended-tracks {
-            grid-template-columns: 1fr;
-        }
-    }
-    
-    @media (max-width: 768px) {
-        .quiz-results-container {
-            padding: 1rem;
+        /* ------------------ Botão de voltar ------------------ */
+        .results-back-button {
+            margin-bottom: 2rem;
         }
         
-        .quiz-completion {
-            flex-direction: column;
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: var(--card-background);
+            border: 2px solid var(--border-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: var(--secondary-orange);
+            color: var(--background-dark);
+            transform: translateX(-3px);
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+        }
+        
+        .back-button i {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-button:hover i {
+            transform: translateX(-2px);
+        }
+        
+        /* ------------------ Estatísticas ------------------ */
+        .user-stats {
+            margin-bottom: 4rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--card-background);
+            padding: 2.5rem;
+            border-radius: 15px;
             text-align: center;
+            border: 2px solid var(--border-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .completion-badge {
-            margin-right: 0;
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,188,212,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .stat-card:hover::before {
+            left: 100%;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 15px 35px rgba(0,188,212,0.2);
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--secondary-orange);
             margin-bottom: 1rem;
         }
         
-        .track-match {
-            position: static;
+        .stat-card h3 {
+            color: var(--heading-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .stat-card p {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 0;
+            font-family: var(--font-display);
+        }
+        
+        /* ------------------ Trilhas Recomendadas ------------------ */
+        .recommended-tracks {
+            margin-bottom: 4rem;
+        }
+        
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .track-card {
+            background: var(--card-background);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid var(--border-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .track-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,140,0,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .track-card:hover::before {
+            left: 100%;
+        }
+        
+        .track-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--secondary-orange);
+            box-shadow: 0 20px 40px rgba(255,140,0,0.2);
+        }
+        
+        .track-card.primary {
+            border-color: var(--secondary-orange);
+            box-shadow: 0 10px 30px rgba(255,140,0,0.15);
+        }
+        
+        .track-rank {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--secondary-orange);
+            color: var(--background-dark-blue);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: var(--font-display);
+        }
+        
+        .track-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .track-header h3 {
+            color: var(--heading-color);
+            font-size: 1.5rem;
+            margin: 0;
+            font-family: var(--font-display);
+        }
+        
+        .match-percentage {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-orange));
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,188,212,0.3);
+        }
+        
+        .track-description {
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        
+        .track-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        /* ------------------ Próximos Passos ------------------ */
+        .next-steps {
+            margin-bottom: 4rem;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .step-card {
+            background: var(--card-background);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 2px solid var(--border-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,188,212,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .step-card:hover::before {
+            left: 100%;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 15px 35px rgba(0,188,212,0.2);
+        }
+        
+        .step-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-card h3 {
+            color: var(--heading-color);
             margin-bottom: 1rem;
+            font-family: var(--font-display);
+            font-size: 1.3rem;
         }
         
-        .track-info {
-            margin-right: 0;
+        .step-card p {
+            color: var(--text-color);
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.6;
         }
         
-        .quiz-actions {
-            flex-direction: column;
+        /* ------------------ Botões Secundários ------------------ */
+        .tech-button-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary-blue);
+            padding: 0.9rem 2.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-blue);
         }
-    }
-</style>
-
-<script>
-    // Animação para os cards de trilha
-    document.addEventListener('DOMContentLoaded', function() {
-        const trackCards = document.querySelectorAll('.track-card');
         
-        // Adiciona classe para iniciar animação
-        trackCards.forEach(card => {
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 100);
+        .tech-button-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--background-dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,188,212,0.3);
+        }
+        
+        /* ------------------ Sem Recomendações ------------------ */
+        .no-recommendations {
+            text-align: center;
+            padding: 3rem;
+            background: var(--card-background);
+            border-radius: 15px;
+            border: 2px solid var(--border-blue);
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        /* ------------------ Responsividade ------------------ */
+        @media (max-width: 768px) {
+            .quiz-results-container {
+                padding: 1rem;
+            }
+            
+            .quiz-results-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tracks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .track-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .track-actions {
+                flex-direction: column;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    
+    <!-- Particles.js Configuration -->
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#00bcd4' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#00bcd4',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
         });
-    });
-</script>
-@endsection
+    </script>
+</body>
+</html>

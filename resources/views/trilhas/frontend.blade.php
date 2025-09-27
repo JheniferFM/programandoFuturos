@@ -301,38 +301,5 @@
             <a href="#" class="module-button">Iniciar Módulo</a>
         </div>
     </div>
-    
-    <div class="courses-section">
-        <h2 class="section-title">Cursos Recomendados</h2>
-        <div class="courses-container">
-            <div class="course-card">
-                <h3>HTML5 e CSS3 Completo</h3>
-                <p>Curso completo de HTML5 e CSS3 para iniciantes, abordando desde os conceitos básicos até técnicas avançadas de layout e responsividade.</p>
-                <div class="course-info">
-                    <span>Duração: 40 horas</span>
-                    <span>Nível: Iniciante</span>
-                </div>
-                <a href="#" class="course-button">Ver Curso</a>
-            </div>
-            <div class="course-card">
-                <h3>JavaScript Moderno</h3>
-                <p>Aprenda JavaScript do zero ao avançado, incluindo ES6+, manipulação do DOM, eventos, promessas, async/await e muito mais.</p>
-                <div class="course-info">
-                    <span>Duração: 50 horas</span>
-                    <span>Nível: Intermediário</span>
-                </div>
-                <a href="#" class="course-button">Ver Curso</a>
-            </div>
-            <div class="course-card">
-                <h3>React.js Essencial</h3>
-                <p>Domine o React.js e crie aplicações web modernas e reativas. Aprenda sobre componentes, hooks, context API e integração com APIs.</p>
-                <div class="course-info">
-                    <span>Duração: 45 horas</span>
-                    <span>Nível: Intermediário</span>
-                </div>
-                <a href="#" class="course-button">Ver Curso</a>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection

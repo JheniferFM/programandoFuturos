@@ -90,10 +90,27 @@
     .register-link:hover {
         color: #ffa500;
     }
+
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #00bcd4;
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        transition: color 0.3s ease;
+    }
+    .back-button:hover { color: #00e5ff; }
+    .back-button i { font-size: 1rem; }
 </style>
 
 <div class="auth-container">
     <div class="auth-card">
+        <a href="{{ route('home') }}" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Voltar ao início
+        </a>
         <h2>Cadastro</h2>
         <form method="POST" action="{{ route('register') }}">
             @csrf

@@ -200,14 +200,13 @@
                 <li><a href="#sobre" class="active">Sobre</a></li>
                 <li><a href="#areas">Áreas</a></li>
                 <li><a href="#trilhas">Trilhas</a></li>
-                <li><a href="{{ route('quiz.index') }}">Descubra Sua Vocação</a></li>
+                <li><a href="{{ route('quiz.index') }}">Descubra Seu Perfil</a></li>
                 <li><a href="#equipe">Equipe</a></li>
                 <li><a href="#contato">Contato</a></li>
                 @auth
                 <li class="user-dropdown">
                     <a href="#" class="user-icon"><i class="fas fa-user-circle"></i> {{ Auth::user()->name }} <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-menu">
-                        <a href="{{ route('quiz.index') }}" class="dropdown-item">Minha Vocação</a>
                         <a href="{{ route('login') }}" class="dropdown-item">Trocar de conta</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
