@@ -127,6 +127,7 @@
         }
     </style>
 
+    
     <div class="trilhas-section">
         <h1>Trilhas de Aprendizado</h1>
 

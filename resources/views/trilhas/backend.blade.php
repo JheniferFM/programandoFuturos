@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="trilha-container">
-    {{-- Mantivemos seu CSS diretamente aqui para facilitar --}}
+    {{-- Este é o mesmo estilo da outra página, garantindo a consistência visual --}}
     <style>
         :root {
             --background-dark-blue: #1a1a2e;
@@ -274,33 +274,14 @@
     </div>
 
     <div class="modules-container">
-        <div class="module-card">
-            <span class="module-number">1</span>
-            <h3>Fundamentos de HTML</h3>
-            <p>Aprenda a estruturar páginas web com HTML5, tags semânticas e boas práticas.</p>
-            <a href="#" class="module-button">Iniciar Módulo</a>
-        </div>
-
-        <div class="module-card">
-            <span class="module-number">2</span>
-            <h3>Estilização com CSS</h3>
-            <p>Domine CSS3, seletores, flexbox, grid e técnicas de design responsivo.</p>
-            <a href="#" class="module-button">Iniciar Módulo</a>
-        </div>
-
-        <div class="module-card">
-            <span class="module-number">3</span>
-            <h3>JavaScript Básico</h3>
-            <p>Introdução à programação com JavaScript, manipulação do DOM e eventos.</p>
-            <a href="#" class="module-button">Iniciar Módulo</a>
-        </div>
-
-        <div class="module-card">
-            <span class="module-number">4</span>
-            <h3>Frameworks Front-end</h3>
-            <p>Conheça os principais frameworks como React, Vue.js e suas aplicações.</p>
-            <a href="#" class="module-button">Iniciar Módulo</a>
-        </div>
+        @foreach($modulos as $modulo)
+            <div class="module-card">
+                <span class="module-number">{{ $modulo['numero'] }}</span>
+                <h3>{{ $modulo['titulo'] }}</h3>
+                <p>{{ $modulo['descricao'] }}</p>
+                <a href="#" class="module-button">Iniciar Módulo</a>
+            </div>
+        @endforeach
     </div>
     
     <div class="courses-section">
