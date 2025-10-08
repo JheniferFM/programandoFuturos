@@ -36,7 +36,7 @@ Route::get('/teste', function() {
 // Trilhas - AGORA APONTANDO PARA O CONTROLLER
 Route::get('/trilhas/frontend', [TrilhaController::class, 'showFrontend'])->name('trilhas.frontend');
 Route::get('/trilhas/backend', [TrilhaController::class, 'showBackend'])->name('trilhas.backend');
-
+Route::get('/trilhas/Mobile', [TrilhaController::class, 'showMobile'])->name('trilhas.Mobile');
 
 // Autenticação
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -63,6 +63,12 @@ Route::prefix('quiz')->name('quiz.')->group(function () {
 Route::get('/trilha/backend', function() {
     return view('trilhas.backend');
 });
+
+Route::get('/trilha/Mobile', function() {
+    return view('trilhas.Mobile');
+});
+
+
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);

@@ -82,5 +82,44 @@ class TrilhaController extends Controller
         // Certifique-se de que o nome da view está correto
         return view('trilhas.backend', compact('trilha', 'modulos', 'cursos'));
     }
+
+       public function showMobile(): View
+    {
+        $trilha = [
+            'titulo' => 'Trilha de Desenvolvimento Mobile',
+            'sobre' => [
+                    'Bem-vindo à trilha de Desenvolvimento Mobile! Aqui você aprenderá a criar aplicativos modernos e interativos para Android e iOS, explorando desde os fundamentos até o deploy nas lojas oficiais.',
+        'Esta trilha é ideal para quem deseja dominar o ecossistema mobile, unindo design, performance e integração com APIs e serviços em nuvem.',
+        'O desenvolvimento mobile está no centro da inovação digital, permitindo levar experiências completas e conectadas diretamente ao bolso dos usuários.'
+            ],
+            'aprendizados' => [
+                'Conceitos fundamentais de desenvolvimento mobile (nativo, híbrido e multiplataforma)',
+        'Criação de interfaces responsivas e interativas com React Native ou Flutter',
+        'Consumo de APIs RESTful e integração com serviços externos (Firebase, bancos de dados, etc.)',
+        'Gerenciamento de estado, navegação entre telas e armazenamento local',
+        'Publicação e manutenção de aplicativos nas lojas (Google Play e App Store)'
+            ]
+        ];
+
+        $modulos = [
+            ['numero' => 1, 'titulo' => 'Fundamentos do Desenvolvimento Mobile', 'descricao' => 'Aprenda sobre conceitos, ecossistema Android/IOS e a configurar seu ambiente;'],
+            ['numero' => 2, 'titulo' => 'Introdução ap React Native/Flutter' , 'descricao' => 'Aprenda a criar interfaces móveis com React Native, componentes, navegação e consumo de APIs'],
+            ['numero' => 3, 'titulo' => 'Integração com Backend e Banco de dados', 'descricao' => 'Conecte seus apps a uma API real, trabalher com autenticação, persistencia e CRUD de dados.'],
+            ['numero' => 4, 'titulo' => 'Publicação e Otimização de Aplicativos', 'descricao' => 'Prepare seu app apra produção, otimize desempenho e publique ma Google Play ou App Store.'],
+        ];
+
+        $cursos = [
+            ['titulo' => 'React Native Essencial', 'descricao' => 'Aprenda a criar aplicativos móveis multiplataforma com React Native. Domine componentes, navegação, consumo de APIs e integração com o backend..', 'duracao' => '50 horas', 'nivel' => 'Iniciante'],
+            ['titulo' => 'Flutter e Dart Completo', 'descricao' => 'Domine o framework Flutter e a linguagem Dart para desenvolver apps nativos de alta performance para Android e iOS com uma única base de código.', 'duracao' => '45 horas', 'nivel' => 'Intermediário'],
+            ['titulo' => 'Integração com Firebase para Mobile', 'descricao' => 'Aprenda a conectar seus aplicativos a serviços Firebase, incluindo autenticação, banco de dados em tempo real, armazenamento e notificações push.', 'duracao' => '40 horas', 'nivel' => 'Intermediario'],
+        ];
+
+        // Certifique-se de que o nome da view está correto
+        return view('trilhas.Mobile', compact('trilha', 'modulos', 'cursos'));
+    }
+
+
+
+
 }
 
