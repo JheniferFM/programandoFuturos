@@ -41,7 +41,6 @@ class TrilhaController extends Controller
             ['titulo' => 'React.js Essencial', 'descricao' => 'Domine o React.js e crie aplicações web modernas e reativas. Aprenda sobre componentes, hooks, context API e integração com APIs.', 'duracao' => '45 horas', 'nivel' => 'Intermediário'],
         ];
 
-        // Certifique-se de que o nome da view está correto
         return view('trilhas.frontend', compact('trilha', 'modulos', 'cursos'));
     }
 
@@ -79,8 +78,43 @@ class TrilhaController extends Controller
             ['titulo' => 'Bancos de Dados com SQL', 'descricao' => 'Domine a linguagem SQL e aprenda a modelar, consultar e gerenciar bancos de dados relacionais como MySQL e PostgreSQL.', 'duracao' => '40 horas', 'nivel' => 'Iniciante'],
         ];
 
-        // Certifique-se de que o nome da view está correto
         return view('trilhas.backend', compact('trilha', 'modulos', 'cursos'));
     }
-}
 
+    /**
+     * Mostra a página da trilha de Ciência de Dados.
+     */
+    public function showDados(): View
+    {
+        $trilha = [
+            'titulo' => 'Trilha de Ciência de Dados',
+            'sobre' => [
+                'Bem-vindo à trilha de Ciência de Dados! Aqui você aprenderá a coletar, tratar e analisar informações para extrair insights valiosos.',
+                'Essa trilha é ideal para quem gosta de estatística, programação e inteligência artificial — unindo análise lógica com criatividade.',
+                'O cientista de dados transforma dados em conhecimento, utilizando programação, matemática e ferramentas de aprendizado de máquina para resolver problemas reais.'
+            ],
+            'aprendizados' => [
+                'Fundamentos de Python e manipulação de dados',
+                'Análise estatística e visualização de informações',
+                'Criação de modelos de Machine Learning',
+                'Trabalho com grandes volumes de dados (Big Data)',
+                'Aplicações de IA em problemas do mundo real'
+            ]
+        ];
+
+        $modulos = [
+            ['numero' => 1, 'titulo' => 'Introdução à Ciência de Dados', 'descricao' => 'Entenda o papel do cientista de dados, principais conceitos e ferramentas do mercado.'],
+            ['numero' => 2, 'titulo' => 'Python para Dados', 'descricao' => 'Aprenda a usar Python, Pandas e NumPy para manipular e analisar conjuntos de dados.'],
+            ['numero' => 3, 'titulo' => 'Estatística e Visualização', 'descricao' => 'Aplique estatística e visualize informações com Matplotlib e Seaborn.'],
+            ['numero' => 4, 'titulo' => 'Machine Learning Básico', 'descricao' => 'Crie modelos de aprendizado supervisionado e não supervisionado com Scikit-learn.'],
+        ];
+
+        $cursos = [
+            ['titulo' => 'Python para Data Science', 'descricao' => 'Curso introdutório de Python aplicado à análise e manipulação de dados. Inclui exercícios práticos e projetos.', 'duracao' => '40 horas', 'nivel' => 'Iniciante'],
+            ['titulo' => 'Estatística com Python', 'descricao' => 'Aprenda os conceitos fundamentais de estatística e probabilidade aplicados à análise de dados reais.', 'duracao' => '45 horas', 'nivel' => 'Intermediário'],
+            ['titulo' => 'Machine Learning Essencial', 'descricao' => 'Entenda como criar e treinar modelos de aprendizado de máquina para classificação e regressão.', 'duracao' => '50 horas', 'nivel' => 'Intermediário'],
+        ];
+
+        return view('trilhas.dados', compact('trilha', 'modulos', 'cursos'));
+    }
+}

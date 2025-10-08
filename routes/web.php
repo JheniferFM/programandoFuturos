@@ -35,6 +35,8 @@ Route::get('/teste', function() {
 // Trilhas - AGORA APONTANDO PARA O CONTROLLER
 Route::get('/trilhas/frontend', [TrilhaController::class, 'showFrontend'])->name('trilhas.frontend');
 Route::get('/trilhas/backend', [TrilhaController::class, 'showBackend'])->name('trilhas.backend');
+Route::get('/trilhas/dados', [TrilhaController::class, 'showDados'])->name('trilhas.dados'); // ✅ nova rota
+
 
 
 // Autenticação

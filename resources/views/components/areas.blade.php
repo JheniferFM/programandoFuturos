@@ -138,11 +138,12 @@
             <p>Criação de aplicativos para smartphones e tablets.</p>
             <span class="area-soon-tag">Em Breve</span>
         </div>
-        <div class="area-card coming-soon">
+
+        <div class="area-card">
             <div class="area-icon"><i class="fas fa-database"></i></div>
             <h2>Ciência de Dados</h2>
             <p>Análise e interpretação de dados complexos.</p>
-            <span class="area-soon-tag">Em Breve</span>
+            <a href="/trilhas/dados" class="trilha-button">Acessar Trilha</a>
         </div>
     </div>
 </div>
