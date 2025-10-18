@@ -29,17 +29,57 @@ class TrilhaController extends Controller
         ];
 
         $modulos = [
-            ['numero' => 1, 'titulo' => 'Fundamentos de HTML', 'descricao' => 'Aprenda a estruturar páginas web com HTML5, tags semânticas e boas práticas.'],
-            ['numero' => 2, 'titulo' => 'Estilização com CSS', 'descricao' => 'Domine CSS3, seletores, flexbox, grid e técnicas de design responsivo.'],
-            ['numero' => 3, 'titulo' => 'JavaScript Básico', 'descricao' => 'Introdução à programação com JavaScript, manipulação do DOM e eventos.'],
-            ['numero' => 4, 'titulo' => 'Frameworks Front-end', 'descricao' => 'Conheça os principais frameworks como React, Vue.js e suas aplicações.'],
-        ];
+    [
+        'numero' => 1,
+        'titulo' => 'Fundamentos de HTML',
+        'descricao' => 'Aprenda a estruturar páginas web com HTML5, tags semânticas e boas práticas.',
+        'link' => 'https://www.w3schools.com/html/'
+    ],
+    [
+        'numero' => 2,
+        'titulo' => 'Estilização com CSS',
+        'descricao' => 'Domine CSS3, seletores, flexbox, grid e técnicas de design responsivo.',
+        'link' => 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Relationship_of_grid_layout_with_other_layout_methods?utm_source=chatgpt.com'
+    ],
+    [
+        'numero' => 3,
+        'titulo' => 'JavaScript Básico',
+        'descricao' => 'Introdução à programação com JavaScript, manipulação do DOM e eventos.',
+        'link' => 'https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/Scripting/Events?utm_source=chatgpt.com'
+    ],
+    [
+        'numero' => 4,
+        'titulo' => 'Frameworks Front-end',
+        'descricao' => 'Conheça os principais frameworks como React, Vue.js e suas aplicações.',
+        'link' => 'https://v2.vuejs.org/v2/guide/comparison.html?redirect=true'
+    ],
+];
+
 
         $cursos = [
-            ['titulo' => 'HTML5 e CSS3 Completo', 'descricao' => 'Curso completo de HTML5 e CSS3 para iniciantes, abordando desde os conceitos básicos até técnicas avançadas de layout e responsividade.', 'duracao' => '40 horas', 'nivel' => 'Iniciante'],
-            ['titulo' => 'JavaScript Moderno', 'descricao' => 'Aprenda JavaScript do zero ao avançado, incluindo ES6+, manipulação do DOM, eventos, promessas, async/await e muito mais.', 'duracao' => '50 horas', 'nivel' => 'Intermediário'],
-            ['titulo' => 'React.js Essencial', 'descricao' => 'Domine o React.js e crie aplicações web modernas e reativas. Aprenda sobre componentes, hooks, context API e integração com APIs.', 'duracao' => '45 horas', 'nivel' => 'Intermediário'],
-        ];
+    [
+        'titulo' => 'HTML5 e CSS3 Completo',
+        'descricao' => 'Curso completo de HTML5 e CSS3 para iniciantes, abordando desde os conceitos básicos até técnicas avançadas de layout e responsividade.',
+        'duracao' => '53 horas',
+        'nivel' => 'Iniciante',
+        'link' => 'https://www.alura.com.br/formacao-html-css'
+    ],
+    [
+        'titulo' => 'JavaScript Moderno',
+        'descricao' => 'Aprenda JavaScript do zero ao avançado, incluindo ES6+, manipulação do DOM, eventos, promessas, async/await e muito mais.',
+        'duracao' => '61 horas',
+        'nivel' => 'Intermediário',
+        'link' => 'https://www.alura.com.br/formacao-javascript-front-end'
+    ],
+    [
+        'titulo' => 'React.js Essencial',
+        'descricao' => 'Domine o React.js e crie aplicações web modernas e reativas. Aprenda sobre componentes, hooks, context API e integração com APIs.',
+        'duracao' => '68 horas',
+        'nivel' => 'Intermediário',
+        'link' => 'https://www.alura.com.br/formacao-react-javascript'
+    ],
+];
+
 
         return view('trilhas.frontend', compact('trilha', 'modulos', 'cursos'));
     }

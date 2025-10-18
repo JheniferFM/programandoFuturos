@@ -279,7 +279,7 @@
                 <span class="module-number">{{ $modulo['numero'] }}</span>
                 <h3>{{ $modulo['titulo'] }}</h3>
                 <p>{{ $modulo['descricao'] }}</p>
-                <a href="#" class="module-button">Iniciar Módulo</a>
+                <a href="{{ $modulo['link'] }}" class="module-button" target="_blank" rel="noopener noreferrer">Iniciar Módulo</a>
             </div>
         @endforeach
     </div>
@@ -295,7 +295,7 @@
                         <span>Duração: {{ $curso['duracao'] }}</span>
                         <span>Nível: {{ $curso['nivel'] }}</span>
                     </div>
-                    <a href="#" class="course-button">Ver Curso</a>
+                    <a href="{{ $curso['link'] }}" class="course-button" target="_blank" rel="noopener noreferrer">Ver Curso</a>
                 </div>
             @endforeach
         </div>
