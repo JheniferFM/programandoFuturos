@@ -41,8 +41,10 @@ class TrilhaController extends Controller
             ['titulo' => 'React.js Essencial', 'descricao' => 'Domine o React.js e crie aplicações web modernas e reativas. Aprenda sobre componentes, hooks, context API e integração com APIs.', 'duracao' => '45 horas', 'nivel' => 'Intermediário'],
         ];
 
+        $user = auth()->user();
+
         // Certifique-se de que o nome da view está correto
-        return view('trilhas.frontend', compact('trilha', 'modulos', 'cursos'));
+        return view('trilhas.frontend', compact('trilha', 'modulos', 'cursos', 'user'));
     }
 
     /**
@@ -79,8 +81,10 @@ class TrilhaController extends Controller
             ['titulo' => 'Bancos de Dados com SQL', 'descricao' => 'Domine a linguagem SQL e aprenda a modelar, consultar e gerenciar bancos de dados relacionais como MySQL e PostgreSQL.', 'duracao' => '40 horas', 'nivel' => 'Iniciante'],
         ];
 
+        $user = auth()->user();
+
         // Certifique-se de que o nome da view está correto
-        return view('trilhas.backend', compact('trilha', 'modulos', 'cursos'));
+        return view('trilhas.backend', compact('trilha', 'modulos', 'cursos', 'user'));
     }
 }
 
