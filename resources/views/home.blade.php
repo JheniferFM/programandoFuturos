@@ -203,30 +203,30 @@
                 <li><a href="{{ route('quiz.index') }}">Descubra Seu Perfil</a></li>
                 <li><a href="#equipe">Equipe</a></li>
                 <li><a href="#contato">Contato</a></li>
-                @auth
-                 <li class="user-dropdown">
-                 <a href="#" class="user-icon">
-                <i class="fas fa-user-circle"></i> {{ Auth::user()->name }} <i class="fas fa-caret-down"></i>
-                  </a>
-                 <div class="dropdown-menu">
-                <a href="" class="dropdown-item">Perfil</a>
-                <a href="{{ route('quiz.index') }}" class="dropdown-item">Minha Vocação</a>
-                <a href="#" class="dropdown-item">Nível: {{ Auth::user()->nivel }}</a>
-                <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="dropdown-item">Sair</button>
-                        </form>
-                    </div>
+
+                @guest
+                <li class="user-dropdown">
+                    <a href="{{ route('login') }}" class="user-icon"><i class="fas fa-user-circle"></i> Entrar</a>
                 </li>
-               @else
-     <li class="user-dropdown">
-            <a href="#" class="user-icon"><i class="fas fa-sign-in-alt"></i> Login <i class="fas fa-caret-down"></i></a>
-            <div class="dropdown-menu">
-                <a href="{{ route('login') }}" class="dropdown-item">Entrar com conta</a>
-                <a href="{{ route('register') }}" class="dropdown-item">Cadastrar-se</a>
-            </div>
-        </li>
-    @endauth
+                @endguest
+                @auth
+                @php
+                    $points = Auth::user()->gamification_points ?? 0;
+                    $rankClass = 'bronze';
+                    $rankLabel = 'Bronze';
+                    if ($points >= 801) { $rankClass = 'diamond'; $rankLabel = 'Diamante'; }
+                    elseif ($points >= 401) { $rankClass = 'gold'; $rankLabel = 'Ouro'; }
+                    elseif ($points >= 201) { $rankClass = 'silver'; $rankLabel = 'Prata'; }
+                @endphp
+                <div class="profile-header" style="display:flex;align-items:center;gap:0.75rem;">
+                    <div class="avatar">
+                        <a href="#" id="userMenuToggle" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;">
+                            <img src="{{ asset(Auth::user()->character_avatar ? (str_starts_with(Auth::user()->character_avatar,'avatars/') ? Auth::user()->character_avatar : 'avatars/'.basename(Auth::user()->character_avatar)) : 'avatars/ninja-cat.svg') }}" alt="Avatar" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--primary-blue);">
+                            <span style="margin-top:0.35rem;color:#fff;font-weight:600;font-size:0.95rem;">{{ Auth::user()->name }}</span>
+                        </a>
+                    </div>
+                </div>
+@endauth
             </ul>
         </nav>
     </header>
@@ -275,6 +275,241 @@
             }
         },
         "retina_detect": true
+    });
+</script>
+<style>
+    /* ------------------ Sidebar de Ranking (Paleta da Plataforma) ------------------ */
+    :root {
+        --primary-blue: #00bcd4;
+        --secondary-orange: #FF8E53;
+        --card-background: #16213e;
+        --heading-color: #f0f0f0;
+        --text-color: #e0e0e0;
+        --border-blue: rgba(0,188,212,0.4);
+    }
+
+    .ranking-overlay {
+        position: fixed; inset: 0;
+        background: radial-gradient(circle at 30% 10%, rgba(0,188,212,0.15), transparent 40%), rgba(0,0,0,0.55);
+        opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; z-index: 999;
+        backdrop-filter: blur(2px);
+    }
+    .ranking-overlay.visible { opacity: 1; visibility: visible; }
+
+    .ranking-sidebar {
+        position: fixed; top: 0; right: 0; height: 100vh; width: 420px; max-width: 100%;
+        border-left: 2px solid var(--border-blue);
+        box-shadow: -10px 0 25px rgba(0,0,0,0.35);
+        transform: translateX(100%); transition: transform 0.3s ease; z-index: 1000; padding: 1.5rem;
+        display: flex; flex-direction: column; gap: 1rem; overflow-y: auto; color: var(--text-color);
+        background: linear-gradient(180deg, rgba(22,33,62,0.92) 0%, rgba(12,20,36,0.92) 100%);
+        backdrop-filter: blur(8px);
+        position: fixed;
+    }
+    .ranking-sidebar.open { transform: translateX(0); }
+
+    /* Temas por ranking (criativos) */
+    .rank-theme-bronze { background: linear-gradient(180deg, #2b1e12 0%, #3a2616 100%); }
+    .rank-theme-silver { background: linear-gradient(180deg, #2a2c31 0%, #1b1d22 100%); }
+    .rank-theme-gold {
+        background: linear-gradient(180deg, #3a2a00 0%, #1f1700 100%);
+    }
+    .rank-theme-diamond {
+        background: linear-gradient(180deg, rgba(10,42,51,0.95) 0%, rgba(8,31,38,0.95) 100%);
+    }
+
+    .ranking-header { display:flex; align-items:center; gap:1rem; }
+    .ranking-emblem { width:72px; height:72px; border-radius:50%; display:grid; place-items:center; border:2px solid var(--primary-blue); background: radial-gradient(circle at 50% 40%, rgba(0,188,212,0.25), rgba(0,188,212,0.12)); box-shadow: 0 0 0 6px rgba(0,188,212,0.08); }
+    .ranking-emblem i { font-size:2.4rem; color: var(--primary-blue); }
+    .ranking-title { font-family: var(--font-display); color: var(--heading-color); font-size:1.6rem; letter-spacing: 0.5px; }
+    .ranking-sub { font-size:0.95rem; opacity:0.85; }
+
+    .ranking-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
+        border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:1rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    }
+    .progress { width:100%; height:12px; background: rgba(255,255,255,0.12); border-radius:999px; overflow:hidden; margin-top:0.5rem; }
+    .progress-fill { height:100%; border-radius:999px; }
+
+    /* Badges com gradiente por rank */
+    .rank-badge { display:inline-block; padding: 0.4rem 0.8rem; border-radius: 999px; font-weight: 700; border: 1px solid rgba(255,255,255,0.16); box-shadow: 0 5px 12px rgba(0,0,0,0.25); }
+    .rank-bronze { background: linear-gradient(90deg,#a05a2c,#cd7f32); color: #1a1a1a; }
+    .rank-silver { background: linear-gradient(90deg,#9ea7af,#c0c0c0); color: #1a1a1a; }
+    .rank-gold { background: linear-gradient(90deg,#ffbf00,#ffd700); color: #1a1a1a; border: 2px solid #ffec8b; box-shadow: 0 0 12px rgba(255,215,0,0.6); animation: goldGlow 2.2s ease-in-out infinite; }
+    .rank-diamond { background: linear-gradient(90deg, #00bcd4, #4de4f7); color: #102a43; border: 2px solid #a0f0ff; box-shadow: 0 0 14px rgba(0,225,255,0.6); animation: diamondGlow 2.6s ease-in-out infinite; }
+
+    /* Botão fechar do sidebar */
+    .sidebar-close {
+        position: absolute; top: 14px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.18); color: var(--heading-color);
+        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+        display: grid; place-items: center; cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    .sidebar-close:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.3); }
+
+    /* Animações */
+    @keyframes goldGlow {
+        0% { box-shadow: 0 0 8px rgba(255,215,0,0.4); }
+        50% { box-shadow: 0 0 16px rgba(255,215,0,0.75); }
+        100% { box-shadow: 0 0 8px rgba(255,215,0,0.4); }
+    }
+    @keyframes diamondGlow {
+        0% { box-shadow: 0 0 10px rgba(0,225,255,0.4); }
+        50% { box-shadow: 0 0 20px rgba(0,225,255,0.8); }
+        100% { box-shadow: 0 0 10px rgba(0,225,255,0.4); }
+    }
+</style>
+
+@php
+    $rankClass = 'bronze';
+    if (Auth::check()) {
+        $pointsTmp = Auth::user()->gamification_points ?? 0;
+        if ($pointsTmp >= 801) { $rankClass = 'diamond'; }
+        elseif ($pointsTmp >= 401) { $rankClass = 'gold'; }
+        elseif ($pointsTmp >= 201) { $rankClass = 'silver'; }
+    }
+@endphp
+
+<!-- Sidebar e Overlay -->
+<div id="rankingOverlay" class="ranking-overlay"></div>
+<aside id="rankingSidebar" class="ranking-sidebar @auth rank-theme-{{ $rankClass }} @endauth">
+    <button id="sidebarClose" class="sidebar-close" aria-label="Fechar">&times;</button>
+    @auth
+    @php
+        $points = Auth::user()->gamification_points ?? 0;
+        $rankClass = 'bronze';
+        $rankLabel = 'Bronze';
+        $progressPercent = max(0, min(100, round(($points / 200) * 100)));
+        $nextTarget = 201;
+        $emblem = 'fa-medal';
+        if ($points >= 801) { $rankClass = 'diamond'; $rankLabel = 'Diamante'; $progressPercent = 100; $nextTarget = null; $emblem = 'fa-gem'; }
+        elseif ($points >= 401) { $rankClass = 'gold'; $rankLabel = 'Ouro'; $progressPercent = max(0,min(100, round((($points - 400) / 400) * 100))); $nextTarget = 801; $emblem = 'fa-trophy'; }
+        elseif ($points >= 201) { $rankClass = 'silver'; $rankLabel = 'Prata'; $progressPercent = max(0,min(100, round((($points - 200) / 200) * 100))); $nextTarget = 401; $emblem = 'fa-medal'; }
+    @endphp
+    <div class="ranking-header">
+        <div class="ranking-emblem"><i class="fas {{ $emblem }}"></i></div>
+        <div>
+            <div class="ranking-title">Seu Ranking</div>
+            <div class="ranking-sub">Olá, {{ Auth::user()->name }}</div>
+        </div>
+    </div>
+
+    <div class="ranking-card" style="margin-top:0.8rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+                <div class="stat-label">Rank atual</div>
+                <div class="rank-badge rank-{{ $rankClass }}">{{ $rankLabel }}</div>
+            </div>
+            <div style="text-align:right;">
+                <div class="stat-label">Total de pontos</div>
+                <div class="stat-value">{{ $points }} XP</div>
+            </div>
+        </div>
+        <div style="margin-top:0.6rem;">
+            <div class="stat-label">Progresso para o próximo rank</div>
+            @if ($nextTarget)
+                @php $remaining = max(0, $nextTarget - $points); @endphp
+                <div class="progress">
+                    <div class="progress-fill" style="width: {{ $progressPercent }}%; background: {{ $rankClass == 'gold' ? 'linear-gradient(90deg,#ffbf00,#ffd700)' : ($rankClass == 'silver' ? 'linear-gradient(90deg,#9ea7af,#c0c0c0)' : 'linear-gradient(90deg,#a05a2c,#cd7f32)') }};"></div>
+                </div>
+                <div style="margin-top:0.3rem; opacity:0.85;">Faltam {{ $remaining }} XP para {{ $rankClass == 'silver' ? 'Ouro' : ($rankClass == 'gold' ? 'Diamante' : 'Prata') }}</div>
+            @else
+                <div class="progress">
+                    <div class="progress-fill" style="width:100%; background: linear-gradient(90deg,#00bcd4,#4de4f7);"></div>
+                </div>
+                <div style="margin-top:0.3rem; opacity:0.85;">Você alcançou o topo! Continue acumulando XP para recompensas especiais.</div>
+            @endif
+        </div>
+    </div>
+
+    <div class="ranking-card" style="margin-top:0.8rem;">
+        <div class="stat-label">Destaques do seu perfil</div>
+        <ul style="margin-top:0.4rem; padding-left:1rem; display:grid; gap:0.3rem;">
+            <li>Missões concluídas: <strong>{{ Auth::user()->moduleProgress()->count() }}</strong></li>
+            <li>Aulas concluídas: <strong>{{ Auth::user()->lessonProgress()->count() }}</strong></li>
+            <li>Nível: <strong>{{ Auth::user()->level }}</strong></li>
+        </ul>
+    </div>
+
+    <div class="ranking-card" style="margin-top:0.8rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+            <div style="display:flex;align-items:center;gap:0.8rem;">
+                <div class="ranking-emblem" style="width:56px;height:56px;">
+                    @php $avatar = Auth::user()->character_avatar ?? 'avatars/ninja-cat.svg'; @endphp
+                    <img src="{{ asset($avatar) }}" alt="Avatar" style="width:40px;height:40px;border-radius:8px;object-fit:cover;" />
+                </div>
+                <div>
+                    <div class="stat-label">Avatar</div>
+                    <div style="opacity:0.8;font-size:0.9rem;">Escolha um personagem da plataforma</div>
+                </div>
+            </div>
+        </div>
+        <form method="POST" action="{{ route('avatar.update') }}" style="margin-top:0.6rem;">
+            @csrf
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;">
+                @php $options = ['avatars/ninja-cat.svg','avatars/astronaut.svg','avatars/retro-robot.svg','avatars/wizard.svg','avatars/duck.svg','avatars/code-ninja.svg','avatars/robot.svg']; @endphp
+                @foreach($options as $opt)
+                    <label style="cursor:pointer;display:grid;place-items:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:0.4rem;">
+                        <input type="radio" name="character_avatar" value="{{ $opt }}" @checked(($avatar ?? '') === $opt) style="margin-bottom:0.3rem;" />
+                        <img src="{{ asset($opt) }}" alt="{{ $opt }}" style="width:48px;height:48px;border-radius:8px;object-fit:cover;" />
+                    </label>
+                @endforeach
+            </div>
+            <button type="submit" class="tech-button" style="margin-top:0.6rem;">Salvar Avatar</button>
+        </form>
+    </div>
+    @endauth
+
+    @guest
+    <div class="ranking-header">
+        <div class="ranking-emblem"><i class="fas fa-user"></i></div>
+        <div>
+            <div class="ranking-title">Seu Ranking</div>
+            <div class="ranking-sub">Faça login para ver seu rank e progresso</div>
+        </div>
+    </div>
+    <div style="margin-top:0.8rem;">
+        <a href="{{ route('login') }}" class="tech-button">Entrar</a>
+    </div>
+    @endauth
+
+    <!-- Rodapé do sidebar com ação de Sair -->
+    @auth
+    <div style="margin-top:auto;display:flex;justify-content:flex-end;">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="tech-button" style="background:#e74c3c;color:#fff;border:1px solid rgba(255,255,255,0.2);">Sair</button>
+        </form>
+    </div>
+    @endguest
+</aside>
+<script>
+    // Toggle do menu lateral de ranking
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggle = document.getElementById('userMenuToggle');
+        const sidebar = document.getElementById('rankingSidebar');
+        const overlay = document.getElementById('rankingOverlay');
+        const closeBtn = document.getElementById('sidebarClose');
+
+        function openSidebar() {
+            if (sidebar) sidebar.classList.add('open');
+            if (overlay) overlay.classList.add('visible');
+        }
+        function closeSidebar() {
+            if (sidebar) sidebar.classList.remove('open');
+            if (overlay) overlay.classList.remove('visible');
+        }
+
+        if (toggle) {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                openSidebar();
+            });
+        }
+        if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+        if (overlay) overlay.addEventListener('click', closeSidebar);
     });
 </script>
 </body>

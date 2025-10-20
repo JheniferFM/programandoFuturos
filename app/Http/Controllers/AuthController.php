@@ -67,4 +67,30 @@ class AuthController extends Controller
 
         return redirect('/login');
     }
+
+    // Atualizar avatar de personagem
+    public function updateAvatar(Request $request)
+    {
+        $request->validate([
+            'character_avatar' => 'required|string|max:255'
+        ]);
+
+        // Lista de avatares permitidos (paths de SVG)
+        $allowed = [
+            'avatars/code-ninja.svg',
+            'avatars/robot.svg',
+            'avatars/wizard.svg',
+            'avatars/duck.svg',
+        ];
+
+        if (!in_array($request->character_avatar, $allowed, true)) {
+            return back()->withErrors(['character_avatar' => 'Avatar inválido.']);
+        }
+
+        $user = Auth::user();
+        $user->character_avatar = $request->character_avatar;
+        $user->save();
+
+        return back()->with('success', 'Avatar atualizado com sucesso!');
+    }
 }

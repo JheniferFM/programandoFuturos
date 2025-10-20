@@ -43,4 +43,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function() {
         return view('dashboard.index');
     })->name('dashboard');
+
+    // Atualização de avatar de personagem
+    Route::post('/avatar', [AuthController::class, 'updateAvatar'])->name('avatar.update');
+
+    // Sincronização de pontos das trilhas com o ranking
+    Route::post('/trilhas/sync-points', [TrilhaController::class, 'syncPoints'])->name('trilhas.syncPoints');
 });

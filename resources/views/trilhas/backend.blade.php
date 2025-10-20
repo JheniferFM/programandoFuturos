@@ -284,21 +284,5 @@
         @endforeach
     </div>
     
-    <div class="courses-section">
-        <h2 class="section-title">Cursos Recomendados</h2>
-        <div class="courses-container">
-            @foreach($cursos as $curso)
-                <div class="course-card">
-                    <h3>{{ $curso['titulo'] }}</h3>
-                    <p>{{ $curso['descricao'] }}</p>
-                    <div class="course-info">
-                        <span>Duração: {{ $curso['duracao'] }}</span>
-                        <span>Nível: {{ $curso['nivel'] }}</span>
-                    </div>
-                    <a href="#" class="course-button">Ver Curso</a>
-                </div>
-            @endforeach
-        </div>
-    </div>
 </div>
 @endsection

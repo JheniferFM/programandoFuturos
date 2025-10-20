@@ -122,6 +122,7 @@ class User extends Authenticatable
         'quiz_progress',
         'quiz_completed',
         'gamification_points',
+        'character_avatar',
 
         'current_streak',
         'best_streak',

@@ -258,32 +258,7 @@
 
 
 
-        <!-- Next Steps -->
-        <div class="next-steps">
-            <h2 class="section-title">🎯 Próximos Passos</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-icon">📚</div>
-                    <h3>Explore as Trilhas</h3>
-                    <p>Comece pela trilha mais recomendada para você e avance nos módulos.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-icon">🎮</div>
-                    <h3>Dashboard Gamificado</h3>
-                    <p>Acompanhe seu progresso e estatísticas no dashboard.</p>
-                    <a href="{{ route('dashboard') }}" class="tech-button">Ir para Dashboard</a>
-                </div>
-                <div class="step-card">
-                    <div class="step-icon">🔄</div>
-                    <h3>Refazer Questionário</h3>
-                    <p>Seus interesses mudaram? Refaça o questionário para novas recomendações.</p>
-                    <form action="{{ route('quiz.reset') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="tech-button-secondary">Refazer Quiz</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+>
     </div>
 </div>
 
@@ -489,67 +464,7 @@
             flex-wrap: wrap;
         }
         
-        /* ------------------ Próximos Passos ------------------ */
-        .next-steps {
-            margin-bottom: 4rem;
-        }
         
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        
-        .step-card {
-            background: var(--card-background);
-            border-radius: 15px;
-            padding: 2.5rem;
-            text-align: center;
-            border: 2px solid var(--border-blue);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .step-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0,188,212,0.1), transparent);
-            transition: left 0.5s;
-        }
-        
-        .step-card:hover::before {
-            left: 100%;
-        }
-        
-        .step-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-blue);
-            box-shadow: 0 15px 35px rgba(0,188,212,0.2);
-        }
-        
-        .step-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .step-card h3 {
-            color: var(--heading-color);
-            margin-bottom: 1rem;
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-        }
-        
-        .step-card p {
-            color: var(--text-color);
-            opacity: 0.9;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
         
         /* ------------------ Botões Secundários ------------------ */
         .tech-button-secondary {

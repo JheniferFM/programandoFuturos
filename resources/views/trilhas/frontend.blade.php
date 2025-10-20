@@ -1264,22 +1264,6 @@
         </div>
     </div>
 
-    <div class="courses-section">
-        <h2 class="section-title">Cursos Recomendados</h2>
-        <div class="courses-container">
-            @foreach($cursos as $curso)
-                <div class="course-card">
-                    <h3>{{ $curso['titulo'] }}</h3>
-                    <p>{{ $curso['descricao'] }}</p>
-                    <div class="course-info">
-                        <span>Duração: {{ $curso['duracao'] }}</span>
-                        <span>Nível: {{ $curso['nivel'] }}</span>
-                    </div>
-                    <a href="#" class="course-button">Ver Curso</a>
-                </div>
-            @endforeach
-        </div>
-    </div>
 
     <!-- Trilha Interativa -->
     <div class="trilha-interactive">
@@ -1588,6 +1572,11 @@
                 this.data.topicProgress[topicKey].points += points;
                 // Salvar sem chamar updateUI (será chamado manualmente)
                 localStorage.setItem(this.storageKey, JSON.stringify(this.data));
+
+                // Sincronizar pontos com o backend para refletir no ranking
+                if (window.syncTrailPoints) {
+                    window.syncTrailPoints(points, `frontend:${topicKey}`);
+                }
             }
 
             completeExercise(topicKey, exerciseId) {
@@ -1906,11 +1895,17 @@
                 // Remover event listeners anteriores e adicionar novo
                 submitBtn.onclick = () => this.submitAnswer();
 
-                options.innerHTML = this.currentExercise.options.map((option, index) => `
-                    <button class="option-btn" data-index="${index}" onclick="selectAnswer(${index})">
-                        ${String.fromCharCode(65 + index)}) ${option}
-                    </button>
-                `).join('');
+                // Renderizar opções usando criação de elementos e textContent para evitar interpretar tags HTML como elementos
+                options.innerHTML = '';
+                this.currentExercise.options.forEach((option, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.setAttribute('data-index', index);
+                    btn.onclick = () => selectAnswer(index);
+                    // Exibir literalmente strings como "<div>" sem que virem elementos HTML
+                    btn.textContent = `${String.fromCharCode(65 + index)}) ${option}`;
+                    options.appendChild(btn);
+                });
 
                 modal.classList.add('active');
             }
@@ -2334,6 +2329,37 @@
         });
         
 
+
+        // Função global para sincronizar pontos da trilha com o ranking do usuário
+        function syncTrailPoints(points, source = 'frontend') {
+            try {
+                const tokenMeta = document.querySelector('meta[name="csrf-token"]');
+                const csrfToken = tokenMeta ? tokenMeta.getAttribute('content') : null;
+
+                fetch('/trilhas/sync-points', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken || ''
+                    },
+                    body: JSON.stringify({ points: Number(points) || 0, source })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (!data.success) {
+                        console.warn('Falha ao sincronizar pontos da trilha:', data);
+                    } else {
+                        console.log('Pontos sincronizados com sucesso. Total do usuário:', data.new_points);
+                    }
+                })
+                .catch(err => console.error('Erro na sincronização de pontos:', err));
+            } catch (e) {
+                console.error('Erro ao preparar sincronização de pontos:', e);
+            }
+        }
+        window.syncTrailPoints = syncTrailPoints;
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {

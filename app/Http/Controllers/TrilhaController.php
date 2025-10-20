@@ -86,5 +86,28 @@ class TrilhaController extends Controller
         // Certifique-se de que o nome da view está correto
         return view('trilhas.backend', compact('trilha', 'modulos', 'cursos', 'user'));
     }
+
+    // Sincroniza pontos (XP) das trilhas com o ranking do usuário
+    public function syncPoints(Request $request)
+    {
+        $validated = $request->validate([
+            'points' => 'required|integer|min:0',
+            'source' => 'nullable|string|max:100',
+        ]);
+
+        $user = auth()->user();
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'Unauthenticated'], 401);
+        }
+
+        // Incrementa os pontos de gamificação do usuário
+        $user->increment('gamification_points', (int) $validated['points']);
+
+        return response()->json([
+            'success' => true,
+            'new_points' => $user->gamification_points,
+            'source' => $validated['source'] ?? null,
+        ]);
+    }
 }
 
