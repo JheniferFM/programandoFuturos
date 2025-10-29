@@ -2364,4 +2364,4 @@
         });
     </script>
 </div>
-@endsection@
+@endsection
