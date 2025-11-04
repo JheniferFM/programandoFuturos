@@ -87,6 +87,85 @@ class TrilhaController extends Controller
         return view('trilhas.backend', compact('trilha', 'modulos', 'cursos', 'user'));
     }
 
+    /**
+     * Mostra a página da trilha de desenvolvimento Mobile.
+     */
+    public function showMobile(): View
+    {
+        $trilha = [
+            'titulo' => 'Trilha de Desenvolvimento Mobile',
+            'sobre' => [
+                'Bem-vindo à trilha de Desenvolvimento Mobile! Aqui você aprenderá a criar aplicativos móveis modernos para iOS e Android.',
+                'Esta trilha é ideal para quem deseja entrar no mundo do desenvolvimento de apps, focando em experiências nativas e híbridas.',
+                'O desenvolvimento mobile é essencial no cenário atual, onde a maioria dos usuários acessa a internet através de dispositivos móveis.'
+            ],
+            'aprendizados' => [
+                'Fundamentos de desenvolvimento mobile',
+                'Desenvolvimento nativo (iOS e Android)',
+                'Frameworks cross-platform (React Native, Flutter)',
+                'Design de interfaces móveis e UX',
+                'Publicação nas lojas de aplicativos'
+            ]
+        ];
+
+        $modulos = [
+            ['numero' => 1, 'titulo' => 'Introdução ao Mobile', 'descricao' => 'Conheça os fundamentos do desenvolvimento mobile e as principais plataformas.'],
+            ['numero' => 2, 'titulo' => 'React Native Básico', 'descricao' => 'Aprenda a criar apps multiplataforma com React Native e JavaScript.'],
+            ['numero' => 3, 'titulo' => 'UI/UX para Mobile', 'descricao' => 'Design de interfaces móveis, navegação e experiência do usuário.'],
+            ['numero' => 4, 'titulo' => 'APIs e Backend', 'descricao' => 'Integração com APIs, armazenamento local e recursos nativos.'],
+        ];
+
+        $cursos = [
+            ['titulo' => 'React Native Fundamentals', 'descricao' => 'Curso completo de React Native para criar apps multiplataforma com JavaScript.', 'duracao' => '45 horas', 'nivel' => 'Iniciante'],
+            ['titulo' => 'UI/UX para Apps', 'descricao' => 'Aprenda a criar interfaces móveis intuitivas e atraentes seguindo as melhores práticas.', 'duracao' => '30 horas', 'nivel' => 'Intermediário'],
+            ['titulo' => 'Recursos Nativos', 'descricao' => 'Explore recursos nativos como câmera, GPS, notificações e armazenamento local.', 'duracao' => '35 horas', 'nivel' => 'Intermediário'],
+        ];
+
+        $user = auth()->user();
+
+        // Certifique-se de que o nome da view está correto
+        return view('trilhas.mobile', compact('trilha', 'modulos', 'cursos', 'user'));
+    }
+
+    /**
+     * Mostra a página da trilha de Ciência de Dados.
+     */
+    public function showDataScience(): View
+    {
+        $trilha = [
+            'titulo' => 'Trilha de Ciência de Dados',  // Changed from 'nome' to 'titulo'
+            'sobre' => [
+                'Bem-vindo à trilha de Ciência de Dados! Aqui você aprenderá análise e interpretação de dados através de tecnologias e métodos modernos.',
+                'Esta trilha é ideal para quem deseja trabalhar com análise de dados, machine learning e inteligência artificial, focando em soluções práticas e cases reais.',
+                'A ciência de dados é fundamental no cenário atual, onde a análise de grandes volumes de dados é crucial para tomada de decisões estratégicas e inovação.'
+            ],
+            'aprendizados' => [
+                'Fundamentos de estatística e probabilidade',
+                'Programação com Python para análise de dados',
+                'Machine Learning e modelos preditivos',
+                'Visualização e storytelling com dados',
+                'Big Data e ferramentas de análise em larga escala'
+            ]
+        ];
+
+        $modulos = [
+            ['numero' => 1, 'titulo' => 'Introdução à Ciência de Dados', 'descricao' => 'Fundamentos e conceitos básicos de análise de dados, estatística e programação.'],
+            ['numero' => 2, 'titulo' => 'Python e Pandas', 'descricao' => 'Análise de dados com Python, Pandas e NumPy para manipulação eficiente de dados.'],
+            ['numero' => 3, 'titulo' => 'Visualização de Dados', 'descricao' => 'Criação de visualizações efetivas com matplotlib, seaborn e técnicas de storytelling.'],
+            ['numero' => 4, 'titulo' => 'Machine Learning', 'descricao' => 'Introdução ao aprendizado de máquina com scikit-learn e casos práticos.'],
+        ];
+
+        $cursos = [
+            ['titulo' => 'Python para Dados', 'descricao' => 'Curso completo de Python focado em análise de dados e bibliotecas essenciais.', 'duracao' => '40 horas', 'nivel' => 'Iniciante'],
+            ['titulo' => 'Estatística Prática', 'descricao' => 'Aprenda estatística aplicada à análise de dados com exemplos reais.', 'duracao' => '35 horas', 'nivel' => 'Intermediário'],
+            ['titulo' => 'ML Fundamentals', 'descricao' => 'Fundamentos de Machine Learning com aplicações práticas e cases.', 'duracao' => '45 horas', 'nivel' => 'Intermediário']
+        ];
+
+        $user = auth()->user();
+
+        return view('trilhas.datascience', compact('trilha', 'modulos', 'cursos', 'user'));
+    }
+
     // Sincroniza pontos (XP) das trilhas com o ranking do usuário
     public function syncPoints(Request $request)
     {
