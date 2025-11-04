@@ -87,6 +87,55 @@ class TrilhaController extends Controller
         return view('trilhas.backend', compact('trilha', 'modulos', 'cursos', 'user'));
     }
 
+
+
+    /**
+     * Mostra a página da trilha de desenvolvimento Mobile.
+     */
+    public function showMobile(): View
+    {
+      $trilha = [
+    'titulo' => 'Trilha de Desenvolvimento Mobile',
+    'sobre' => [
+        'Bem-vindo à trilha de Desenvolvimento Mobile! Aqui você aprenderá a criar aplicativos para Android e iOS, explorando desde a interface até a integração com APIs e bancos de dados.',
+        'Esta trilha é ideal para quem deseja dominar o ciclo completo de desenvolvimento mobile, desde o design de telas responsivas até a publicação nas lojas de aplicativos.',
+        'O desenvolvimento mobile é uma área em constante evolução, que une criatividade, performance e experiência do usuário para criar soluções práticas e modernas na palma da mão.'
+    ],
+    'aprendizados' => [
+        'Fundamentos do desenvolvimento mobile nativo (Android e iOS)',
+        'Desenvolvimento multiplataforma com Flutter e React Native',
+        'Consumo de APIs RESTful e integração com bancos de dados',
+        'Gerenciamento de estado, autenticação e persistência de dados locais',
+        'Publicação e manutenção de apps nas lojas (Google Play e App Store)'
+    ]
+];
+
+$modulos = [
+    ['numero' => 1, 'titulo' => 'Fundamentos do Desenvolvimento Mobile', 'descricao' => 'Entenda os conceitos essenciais de apps nativos e multiplataforma, suas diferenças e quando usar cada abordagem.'],
+    ['numero' => 2, 'titulo' => 'Interface e Experiência do Usuário (UI/UX)', 'descricao' => 'Aprenda a criar interfaces intuitivas e responsivas utilizando Material Design e componentes nativos.'],
+    ['numero' => 3, 'titulo' => 'Integração com APIs e Bancos de Dados', 'descricao' => 'Conecte seus aplicativos a APIs externas e implemente persistência de dados com SQLite, Firebase e outras soluções.'],
+    ['numero' => 4, 'titulo' => 'Publicação e Manutenção', 'descricao' => 'Prepare seu aplicativo para publicação, configure assinaturas digitais e entenda o ciclo de atualização nas lojas.'],
+];
+
+$cursos = [
+    ['titulo' => 'Desenvolvimento Android com Kotlin', 'descricao' => 'Aprenda a criar aplicativos Android modernos utilizando a linguagem Kotlin e as boas práticas do Android Jetpack.', 'duracao' => '50 horas', 'nivel' => 'Iniciante'],
+    ['titulo' => 'Flutter e Dart do Zero ao Avançado', 'descricao' => 'Domine o framework Flutter para criar aplicativos multiplataforma performáticos com uma única base de código.', 'duracao' => '60 horas', 'nivel' => 'Intermediário'],
+    ['titulo' => 'React Native Essencial', 'descricao' => 'Construa aplicativos nativos para Android e iOS usando JavaScript e o ecossistema React.', 'duracao' => '45 horas', 'nivel' => 'Intermediário'],
+];
+
+
+        $user = auth()->user();
+
+        // Certifique-se de que o nome da view está correto
+        return view('trilhas.mobile', compact('trilha', 'modulos', 'cursos', 'user'));
+    }
+
+
+
+
+
+
+
     // Sincroniza pontos (XP) das trilhas com o ranking do usuário
     public function syncPoints(Request $request)
     {

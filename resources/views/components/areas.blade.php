@@ -132,11 +132,11 @@
             <a href="/trilhas/backend" class="trilha-button">Acessar Trilha</a>
         </div>
 
-        <div class="area-card coming-soon">
+        <div class="area-card">
             <div class="area-icon"><i class="fas fa-mobile-alt"></i></div>
             <h2>Desenvolvimento Mobile</h2>
             <p>Criação de aplicativos para smartphones e tablets.</p>
-            <span class="area-soon-tag">Em Breve</span>
+            <a href="/trilhas/mobile" class="trilha-button">Acessar Trilha</a>
         </div>
         <div class="area-card coming-soon">
             <div class="area-icon"><i class="fas fa-database"></i></div>

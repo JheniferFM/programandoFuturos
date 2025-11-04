@@ -16,6 +16,8 @@ Route::get('/teste', function() {
 // Trilhas - apontando para o Controller
 Route::get('/trilhas/frontend', [TrilhaController::class, 'showFrontend'])->middleware('auth')->name('trilhas.frontend');
 Route::get('/trilhas/backend', [TrilhaController::class, 'showBackend'])->name('trilhas.backend');
+Route::get('/trilhas/mobile', [TrilhaController::class, 'showMobile'])->name('trilhas.mobile');
+
 
 // Autenticação
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
