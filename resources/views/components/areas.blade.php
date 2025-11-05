@@ -1,5 +1,5 @@
 {{-- resources/views/components/areas.blade.php --}}
-<div class="areas-section">
+<div class="areas-section" id="areas">
     <style>
         .areas-section {
             padding: 4rem 2rem;
@@ -122,27 +122,28 @@
             <div class="area-icon"><i class="fas fa-code"></i></div>
             <h2>Desenvolvimento Front-end</h2>
             <p>Criação de interfaces com HTML, CSS e JavaScript.</p>
-            <a href="/trilhas/frontend" class="trilha-button">Acessar Trilha</a>
+            <a href="{{ route('trilhas.frontend') }}" class="trilha-button">Acessar Trilha</a>
         </div>
 
         <div class="area-card">
             <div class="area-icon"><i class="fas fa-server"></i></div>
             <h2>Desenvolvimento Back-end</h2>
             <p>Lógica de servidores, bancos de dados e APIs.</p>
-            <a href="/trilhas/backend" class="trilha-button">Acessar Trilha</a>
+            <a href="{{ route('trilhas.backend') }}" class="trilha-button">Acessar Trilha</a>
         </div>
 
-        <div class="area-card coming-soon">
+        <div class="area-card">
             <div class="area-icon"><i class="fas fa-mobile-alt"></i></div>
             <h2>Desenvolvimento Mobile</h2>
             <p>Criação de aplicativos para smartphones e tablets.</p>
-            <span class="area-soon-tag">Em Breve</span>
+            <a href="{{ route('trilhas.mobile') }}" class="trilha-button">Acessar Trilha</a>
         </div>
-        <div class="area-card coming-soon">
+
+        <div class="area-card">
             <div class="area-icon"><i class="fas fa-database"></i></div>
             <h2>Ciência de Dados</h2>
             <p>Análise e interpretação de dados complexos.</p>
-            <span class="area-soon-tag">Em Breve</span>
+            <a href="{{ route('trilhas.datascience') }}" class="trilha-button">Acessar Trilha</a>
         </div>
     </div>
 </div>

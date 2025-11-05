@@ -1634,17 +1634,44 @@
             }
         }
 
-        // Dados dos tópicos com exercícios (Totalmente novos para Back-end)
+// Dados dos tópicos com exercícios (Totalmente novos para Back-end)
         const topicsData = {
             logica: {
                 title: 'Lógica de Programação',
                 description: 'A base de tudo. Aprenda sobre variáveis, condicionais, loops e funções que se aplicam a qualquer linguagem.',
                 points: 100,
-                resources: [
-                    { name: 'Curso em Vídeo - Lógica', url: 'https://www.youtube.com/watch?v=8mei6uVttho&list=PLHz_AreHm4dmSj0MbbE4PiYFkN1adSgZc', type: 'Vídeo' },
-                    { name: 'O que são Algoritmos?', url: 'https://algol.dev/algoritmo-o-que-e/?utm_source=chatgpt.com', type: 'Artigo' },
-                    { name: 'Exercícios de Lógica', url: 'https://www.hackerrank.com/domains/algorithms', type: 'Prática' }
-                ],
+                detailedResources: {
+                    'O que é um algoritmo?': [
+                        { name: 'Artigo: O que é um Algoritmo?', url: 'https://algol.dev/algoritmo-o-que-e/', type: 'Artigo' },
+                        { name: 'Vídeo: O que é Algoritmo? - Curso em Vídeo', url: 'https://www.youtube.com/watch?v=8mei6uVttho', type: 'Vídeo' },
+                        { name: 'Documentação: Introdução a Algoritmos (Wikipedia)', url: 'https://pt.wikipedia.org/wiki/Algoritmo', type: 'Documentação' }
+                    ],
+                    'Variáveis e Tipos de Dados': [
+                        { name: 'MDN - Tipos de Dados e Variáveis', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/First_steps/Variables', type: 'Documentação' },
+                        { name: 'W3Schools - Variáveis em JavaScript', url: 'https://www.w3schools.com/js/js_variables.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: O que são Variáveis? (Curso em Vídeo)', url: 'https://www.youtube.com/watch?v=UNcX3Xw0PjA', type: 'Vídeo' }
+                    ],
+                    'Operadores (Aritméticos, Lógicos)': [
+                        { name: 'MDN - Operadores Aritméticos e Lógicos', url: 'https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Expressions_and_Operators', type: 'Documentação' },
+                        { name: 'W3Schools - Operadores JavaScript', url: 'https://www.w3schools.com/js/js_operators.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: Operadores na Prática', url: 'https://www.youtube.com/watch?v=Vbabsye7mWU', type: 'Vídeo' }
+                    ],
+                    'Estruturas Condicionais (if, else, switch)': [
+                        { name: 'MDN - Instruções Condicionais', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Building_blocks/conditionals', type: 'Documentação' },
+                        { name: 'W3Schools - If...Else Statements', url: 'https://www.w3schools.com/js/js_if_else.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: Estruturas Condicionais (Curso em Vídeo)', url: 'https://www.youtube.com/watch?v=VfIXgGJWLvA', type: 'Vídeo' }
+                    ],
+                    'Estruturas de Repetição (for, while)': [
+                        { name: 'MDN - Loops e Iteração', url: 'https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Loops_and_iteration', type: 'Documentação' },
+                        { name: 'W3Schools - Loops JavaScript', url: 'https://www.w3schools.com/js/js_loop_for.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: Estruturas de Repetição (Curso em Vídeo)', url: 'https://www.youtube.com/watch?v=5rZCzJZ9R0g', type: 'Vídeo' }
+                    ],
+                    'Funções e Escopo': [
+                        { name: 'MDN - Funções em JavaScript', url: 'https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions', type: 'Documentação' },
+                        { name: 'W3Schools - JavaScript Functions', url: 'https://www.w3schools.com/js/js_functions.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: Funções e Escopo (Curso em Vídeo)', url: 'https://www.youtube.com/watch?v=UftSB4DaRU4', type: 'Vídeo' }
+                    ]
+                },
                 topics: [
                     'O que é um algoritmo?',
                     'Variáveis e Tipos de Dados',
@@ -1681,11 +1708,38 @@
                 title: 'Linguagem (PHP & Laravel)',
                 description: 'Aprenda a sintaxe da linguagem PHP e o poder do framework Laravel para construir aplicações web robustas.',
                 points: 150,
-                resources: [
-                    { name: 'Documentação Oficial do PHP', url: 'https://www.php.net/manual/pt_BR/', type: 'Documentação' },
-                    { name: 'Laravel - Do Zero', url: 'https://www.youtube.com/watch?v=Mgd0S-n0d4A&list=PL_NmtP-Q-sFqF32Tj-i0C-d-eQfA0-mYd', type: 'Vídeo' },
-                    { name: 'Documentação do Laravel', url: 'https://laravel.com/docs/10.x', type: 'Documentação' }
-                ],
+                detailedResources: {
+                    'Sintaxe básica do PHP': [
+                        { name: 'Documentação Oficial do PHP', url: 'https://www.php.net/manual/pt_BR/', type: 'Documentação' },
+                        { name: 'W3Schools - PHP Basics', url: 'https://www.w3schools.com/php/php_syntax.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: Introdução ao PHP', url: 'https://www.youtube.com/watch?v=BUCiSSyIGGU', type: 'Vídeo' }
+                    ],
+                    'Programação Orientada a Objetos (OOP) em PHP': [
+                        { name: 'PHP Manual - Classes e Objetos', url: 'https://www.php.net/manual/pt_BR/language.oop5.php', type: 'Documentação' },
+                        { name: 'W3Schools - PHP OOP', url: 'https://www.w3schools.com/php/php_oop_what_is.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: PHP Orientado a Objetos', url: 'https://www.youtube.com/watch?v=Hd8s2hA5gGg', type: 'Vídeo' }
+                    ],
+                    'O que é o Laravel (MVC)': [
+                        { name: 'Documentação do Laravel - Introdução', url: 'https://laravel.com/docs/10.x', type: 'Documentação' },
+                        { name: 'Artigo: O que é o Laravel e como funciona', url: 'https://www.hostinger.com.br/tutoriais/o-que-e-laravel', type: 'Artigo' },
+                        { name: 'Vídeo: Introdução ao Laravel MVC', url: 'https://www.youtube.com/watch?v=ImtZ5yENzgE', type: 'Vídeo' }
+                    ],
+                    'Rotas e Controllers': [
+                        { name: 'Laravel Docs - Routing', url: 'https://laravel.com/docs/10.x/routing', type: 'Documentação' },
+                        { name: 'Laravel Docs - Controllers', url: 'https://laravel.com/docs/10.x/controllers', type: 'Documentação' },
+                        { name: 'Vídeo: Rotas e Controllers no Laravel', url: 'https://www.youtube.com/watch?v=fZkF8aW2yeU', type: 'Vídeo' }
+                    ],
+                    'Views (Blade Templates)': [
+                        { name: 'Laravel Docs - Blade Templates', url: 'https://laravel.com/docs/10.x/blade', type: 'Documentação' },
+                        { name: 'Tutorial Blade Laravel', url: 'https://www.tutorialspoint.com/laravel/laravel_blade_template.htm', type: 'Tutorial' },
+                        { name: 'Vídeo: Blade Templates do Zero', url: 'https://www.youtube.com/watch?v=lWMemPN9t6Q', type: 'Vídeo' }
+                    ],
+                    'Models e Eloquent (ORM)': [
+                        { name: 'Laravel Docs - Eloquent ORM', url: 'https://laravel.com/docs/10.x/eloquent', type: 'Documentação' },
+                        { name: 'DigitalOcean - Introdução ao Eloquent', url: 'https://www.digitalocean.com/community/tutorials/eloquent-orm-laravel-pt', type: 'Artigo' },
+                        { name: 'Vídeo: Trabalhando com Models e Eloquent', url: 'https://www.youtube.com/watch?v=2M3Gf5Qq4lA', type: 'Vídeo' }
+                    ]
+                },
                 topics: [
                     'Sintaxe básica do PHP',
                     'Programação Orientada a Objetos (OOP) em PHP',
@@ -1722,11 +1776,38 @@
                 title: 'Bancos de Dados & SQL',
                 description: 'Aprenda a modelar, armazenar e consultar dados usando SQL, o padrão de linguagem para bancos de dados relacionais.',
                 points: 150,
-                resources: [
-                    { name: 'W3Schools - SQL', url: 'https://www.w3schools.com/sql/', type: 'Tutorial' },
-                    { name: 'Curso em Vídeo - Banco de Dados', url: 'https://www.youtube.com/watch?v=Ofktsne-utM&list=PLHz_AreHm4dkBs-7jYIfUIiyLQAoTwS5M', type: 'Vídeo' },
-                    { name: 'Migrations no Laravel', url: 'https://laravel.com/docs/10.x/migrations', type: 'Documentação' }
-                ],
+                detailedResources: {
+                    'O que é um Banco de Dados Relacional?': [
+                        { name: 'Artigo: O que é um Banco de Dados Relacional', url: 'https://www.alura.com.br/artigos/o-que-e-banco-de-dados-relacional', type: 'Artigo' },
+                        { name: 'W3Schools - Introdução ao SQL', url: 'https://www.w3schools.com/sql/sql_intro.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: Conceitos de Banco de Dados Relacional', url: 'https://www.youtube.com/watch?v=Ofktsne-utM', type: 'Vídeo' }
+                    ],
+                    'Modelagem de Dados (Entidade-Relacionamento)': [
+                        { name: 'Artigo: Modelagem de Dados - ERD', url: 'https://www.devmedia.com.br/modelagem-de-dados-conceitos-e-exemplos/13726', type: 'Artigo' },
+                        { name: 'Lucidchart - Como criar diagramas ER', url: 'https://www.lucidchart.com/pages/pt/diagramas/modelo-entidade-relacionamento', type: 'Tutorial' },
+                        { name: 'Vídeo: Modelagem de Dados Explicada', url: 'https://www.youtube.com/watch?v=kC7i0T2A9x4', type: 'Vídeo' }
+                    ],
+                    'Linguagem SQL (DDL, DML)': [
+                        { name: 'W3Schools - SQL Commands', url: 'https://www.w3schools.com/sql/sql_ref_keywords.asp', type: 'Tutorial' },
+                        { name: 'Artigo: Diferença entre DDL e DML', url: 'https://www.alura.com.br/artigos/dml-ddl-dcl-tipos-de-linguagens-sql', type: 'Artigo' },
+                        { name: 'Vídeo: Entendendo DDL e DML', url: 'https://www.youtube.com/watch?v=E8aB6W8sS1A', type: 'Vídeo' }
+                    ],
+                    'Comandos: SELECT, INSERT, UPDATE, DELETE': [
+                        { name: 'W3Schools - SQL SELECT Statement', url: 'https://www.w3schools.com/sql/sql_select.asp', type: 'Tutorial' },
+                        { name: 'W3Schools - SQL INSERT, UPDATE e DELETE', url: 'https://www.w3schools.com/sql/sql_update.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: Principais Comandos SQL na Prática', url: 'https://www.youtube.com/watch?v=HXV3zeQKqGY', type: 'Vídeo' }
+                    ],
+                    'Relacionamentos (JOINs)': [
+                        { name: 'W3Schools - SQL JOIN', url: 'https://www.w3schools.com/sql/sql_join.asp', type: 'Tutorial' },
+                        { name: 'Artigo: Como funcionam os JOINs no SQL', url: 'https://www.devmedia.com.br/sql-join-entenda-como-funciona-o-comando/37607', type: 'Artigo' },
+                        { name: 'Vídeo: Entendendo INNER JOIN, LEFT JOIN, RIGHT JOIN', url: 'https://www.youtube.com/watch?v=9yeOJ0ZMUYw', type: 'Vídeo' }
+                    ],
+                    'Migrations e Seeders (Laravel)': [
+                        { name: 'Laravel Docs - Migrations', url: 'https://laravel.com/docs/10.x/migrations', type: 'Documentação' },
+                        { name: 'Laravel Docs - Seeders', url: 'https://laravel.com/docs/10.x/seeding', type: 'Documentação' },
+                        { name: 'Vídeo: Migrations e Seeders no Laravel', url: 'https://www.youtube.com/watch?v=ku6DkYlC4Fo', type: 'Vídeo' }
+                    ]
+                },
                 topics: [
                     'O que é um Banco de Dados Relacional?',
                     'Modelagem de Dados (Entidade-Relacionamento)',
@@ -1763,11 +1844,38 @@
                 title: 'APIs e Serviços (REST)',
                 description: 'Aprenda como seu back-end pode se comunicar com outras aplicações (como um app mobile ou um front-end) através de APIs REST.',
                 points: 150,
-                resources: [
-                    { name: 'O que é uma API REST?', url: 'https://www.redhat.com/pt-br/topics/api/what-is-a-rest-api', type: 'Artigo' },
-                    { name: 'Construindo APIs no Laravel', url: 'https://laravel.com/docs/10.x/controllers#restful-resource-controllers', type: 'Documentação' },
-                    { name: 'Postman (Ferramenta)', url: 'https://www.postman.com/', type: 'Ferramenta' }
-                ],
+                detailedResources: {
+                    'O que é uma API?': [
+                        { name: 'Artigo: O que é uma API?', url: 'https://www.redhat.com/pt-br/topics/api/what-are-application-programming-interfaces', type: 'Artigo' },
+                        { name: 'MDN - Introdução às APIs', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Client-side_web_APIs/Introduction', type: 'Documentação' },
+                        { name: 'Vídeo: O que é uma API?', url: 'https://www.youtube.com/watch?v=s7wmiS2mSXY', type: 'Vídeo' }
+                    ],
+                    'Princípios do REST': [
+                        { name: 'Artigo: O que é REST?', url: 'https://www.redhat.com/pt-br/topics/api/what-is-a-rest-api', type: 'Artigo' },
+                        { name: 'Tutorial: REST API Concepts and Examples', url: 'https://www.restapitutorial.com/lessons/whatisrest.html', type: 'Tutorial' },
+                        { name: 'Vídeo: REST explicado em 10 minutos', url: 'https://www.youtube.com/watch?v=Q-BpqyOT3a8', type: 'Vídeo' }
+                    ],
+                    'Métodos HTTP (GET, POST, PUT, DELETE)': [
+                        { name: 'MDN - Métodos HTTP', url: 'https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods', type: 'Documentação' },
+                        { name: 'W3Schools - HTTP Methods', url: 'https://www.w3schools.com/tags/ref_httpmethods.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: Métodos HTTP na Prática', url: 'https://www.youtube.com/watch?v=cuEtnrL9-H0', type: 'Vídeo' }
+                    ],
+                    'Formato JSON': [
+                        { name: 'JSON.org - Estrutura JSON', url: 'https://www.json.org/json-pt.html', type: 'Documentação' },
+                        { name: 'W3Schools - JSON Tutorial', url: 'https://www.w3schools.com/js/js_json_intro.asp', type: 'Tutorial' },
+                        { name: 'Vídeo: Entendendo JSON em 5 minutos', url: 'https://www.youtube.com/watch?v=iiADhChRriM', type: 'Vídeo' }
+                    ],
+                    'Autenticação (ex: Tokens)': [
+                        { name: 'Auth0 - O que é Token JWT', url: 'https://auth0.com/pt/learn/json-web-tokens', type: 'Artigo' },
+                        { name: 'Laravel Sanctum - Autenticação por Token', url: 'https://laravel.com/docs/10.x/sanctum', type: 'Documentação' },
+                        { name: 'Vídeo: Autenticação JWT explicada', url: 'https://www.youtube.com/watch?v=7Q17ubqLfaM', type: 'Vídeo' }
+                    ],
+                    'Criando rotas de API no Laravel': [
+                        { name: 'Laravel Docs - Resource Controllers', url: 'https://laravel.com/docs/10.x/controllers#restful-resource-controllers', type: 'Documentação' },
+                        { name: 'Laravel Docs - API Routes', url: 'https://laravel.com/docs/10.x/routing#api-routes', type: 'Documentação' },
+                        { name: 'Vídeo: Construindo APIs com Laravel', url: 'https://www.youtube.com/watch?v=0FJ9iXjz-5E', type: 'Vídeo' }
+                    ]
+                },
                 topics: [
                     'O que é uma API?',
                     'Princípios do REST',
@@ -1804,11 +1912,38 @@
                 title: 'Testes e Boas Práticas',
                 description: 'Garanta a qualidade e a estabilidade do seu código com testes automatizados e entenda o básico de deploy.',
                 points: 150,
-                resources: [
-                    { name: 'Testes no Laravel (PHPUnit)', url: 'https://laravel.com/docs/10.x/testing', type: 'Documentação' },
-                    { name: 'Clean Code (Conceitos)', url: 'https://www.alura.com.br/artigos/o-que-e-clean-code', type: 'Artigo' },
-                    { name: 'Deploy com Laravel Forge', url: 'https://forge.laravel.com/', type: 'Ferramenta' }
-                ],
+                detailedResources: {
+                    'Por que testar?': [
+                        { name: 'Artigo: A importância dos testes de software', url: 'https://www.alura.com.br/artigos/importancia-dos-testes-de-software', type: 'Artigo' },
+                        { name: 'MDN - Introdução a Testes', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Testing', type: 'Documentação' },
+                        { name: 'Vídeo: Por que testar seu código?', url: 'https://www.youtube.com/watch?v=2v9FVVVoL7Y', type: 'Vídeo' }
+                    ],
+                    'Testes Unitários (PHPUnit)': [
+                        { name: 'Laravel Docs - Testes Unitários', url: 'https://laravel.com/docs/10.x/testing', type: 'Documentação' },
+                        { name: 'Tutorial: Introdução ao PHPUnit', url: 'https://www.php.net/manual/pt_BR/book.simpletest.php', type: 'Tutorial' },
+                        { name: 'Vídeo: Criando testes unitários no Laravel', url: 'https://www.youtube.com/watch?v=4N6IKlFQJ8w', type: 'Vídeo' }
+                    ],
+                    'Testes de Feature (TDD)': [
+                        { name: 'Laravel Docs - Testes de Feature', url: 'https://laravel.com/docs/10.x/http-tests', type: 'Documentação' },
+                        { name: 'Artigo: O que é TDD?', url: 'https://www.devmedia.com.br/introducao-ao-test-driven-development-tdd/27819', type: 'Artigo' },
+                        { name: 'Vídeo: TDD na prática com PHP', url: 'https://www.youtube.com/watch?v=E2ahT6Gu3g8', type: 'Vídeo' }
+                    ],
+                    'Princípios (Clean Code, SOLID)': [
+                        { name: 'Artigo: O que é Clean Code?', url: 'https://www.alura.com.br/artigos/o-que-e-clean-code', type: 'Artigo' },
+                        { name: 'Princípios SOLID explicados', url: 'https://medium.com/@raullesteves/os-princ%C3%ADpios-solid-explicados-com-exemplos-em-php-4c42040c4f92', type: 'Tutorial' },
+                        { name: 'Vídeo: Clean Code e boas práticas', url: 'https://www.youtube.com/watch?v=OzAqN0IP_xg', type: 'Vídeo' }
+                    ],
+                    'O que é Deploy?': [
+                        { name: 'Artigo: O que é deploy de software?', url: 'https://rockcontent.com/br/blog/deploy/', type: 'Artigo' },
+                        { name: 'Laravel Forge - Deploy Simplificado', url: 'https://forge.laravel.com/', type: 'Ferramenta' },
+                        { name: 'Vídeo: Como fazer deploy de uma aplicação Laravel', url: 'https://www.youtube.com/watch?v=Hw8AZvV6z0g', type: 'Vídeo' }
+                    ],
+                    'Ambientes (Desenvolvimento, Produção)': [
+                        { name: 'Documentação Laravel - Ambientes', url: 'https://laravel.com/docs/10.x/configuration#environment-configuration', type: 'Documentação' },
+                        { name: 'Artigo: Diferença entre ambiente de dev e produção', url: 'https://aws.amazon.com/pt/what-is/software-development-environment/', type: 'Artigo' },
+                        { name: 'Vídeo: Entendendo ambientes de desenvolvimento', url: 'https://www.youtube.com/watch?v=X2zQi4ZRP0c', type: 'Vídeo' }
+                    ]
+                },
                 topics: [
                     'Por que testar?',
                     'Testes Unitários (PHPUnit)',
@@ -1821,26 +1956,41 @@
                     {
                         id: 'test_1',
                         question: 'O que é um "Teste Unitário"?',
-                        options: ['Testar a aplicação inteira', 'Testar uma pequena parte (unidade) do código, como uma função', 'Testar o visual do site', 'Testar a conexão de rede'],
+                        options: [
+                            'Testar a aplicação inteira',
+                            'Testar uma pequena parte (unidade) do código, como uma função',
+                            'Testar o visual do site',
+                            'Testar a conexão de rede'
+                        ],
                         correct: 1,
                         explanation: 'Teste Unitário foca em testar a menor parte possível do código (uma "unidade"), como um método ou função, de forma isolada.'
                     },
                     {
                         id: 'test_2',
                         question: 'O que significa "TDD"?',
-                        options: ['Test Driven Development', 'Total Data Drive', 'Test Driven Database', 'Time Driven Development'],
+                        options: [
+                            'Test Driven Development',
+                            'Total Data Drive',
+                            'Test Driven Database',
+                            'Time Driven Development'
+                        ],
                         correct: 0,
                         explanation: 'TDD (Test-Driven Development) é uma prática onde você escreve o teste *antes* de escrever o código que faz o teste passar.'
                     },
                     {
                         id: 'test_3',
                         question: 'O que é o "Deploy" de uma aplicação?',
-                        options: ['Desenhar a interface', 'Escrever o código', 'Colocar a aplicação no ar (em produção)', 'Corrigir bugs'],
+                        options: [
+                            'Desenhar a interface',
+                            'Escrever o código',
+                            'Colocar a aplicação no ar (em produção)',
+                            'Corrigir bugs'
+                        ],
                         correct: 2,
                         explanation: 'Deploy é o processo de pegar o código que funciona na sua máquina e colocá-lo em um servidor para que os usuários possam acessá-lo.'
                     }
                 ]
-            }
+            },
         };
 
         // Sistema de Exercícios
@@ -2027,7 +2177,30 @@
             const isCompleted = progressTracker.data.topicProgress[topicKey]?.completed || false;
 
             panelTitle.textContent = topic.title;
-            
+
+            // 🔹 Gera os tópicos e os recursos detalhados
+            const topicsHtml = topic.topics.map(item => {
+                const detailed = topic.detailedResources?.[item] || [];
+                const detailedHtml = detailed.length
+                    ? `<ul class="detailed-resource-list">
+                            ${detailed.map(r => `
+                                <li class="resource-item">
+                                    <a href="${r.url}" target="_blank" class="resource-link">
+                                        ${r.name}
+                                    </a>
+                                    <span class="resource-type">${r.type}</span>
+                                </li>
+                            `).join('')}
+                    </ul>`
+                    : '';
+                return `
+                    <li class="topic-item-detailed">
+                        <strong>${item}</strong>
+                        ${detailedHtml}
+                    </li>`;
+            }).join('');
+
+            // 🔹 Renderiza o painel lateral
             panelContent.innerHTML = `
                 <div class="topic-overview">
                     <p>${topic.description}</p>
@@ -2039,21 +2212,7 @@
                 <div class="resource-section">
                     <h4>📚 O que você vai aprender:</h4>
                     <ul class="topic-list">
-                        ${topic.topics.map(item => `<li>${item}</li>`).join('')}
-                    </ul>
-                </div>
-
-                <div class="resource-section">
-                    <h4>🔗 Recursos de Aprendizado:</h4>
-                    <ul class="resource-list">
-                        ${topic.resources.map(resource => `
-                            <li class="resource-item">
-                                <a href="${resource.url}" class="resource-link" target="_blank">
-                                    ${resource.name}
-                                </a>
-                                <span class="resource-type">${resource.type}</span>
-                            </li>
-                        `).join('')}
+                        ${topicsHtml}
                     </ul>
                 </div>
 
@@ -2072,6 +2231,7 @@
 
             sidePanel.classList.add('active');
         }
+
 
         // Função para fechar o painel lateral
         function closeSidePanel() {

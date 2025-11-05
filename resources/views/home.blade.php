@@ -80,6 +80,47 @@
         .tech-nav ul li a:hover::after,
         .tech-nav ul li a.active::after { width:100%; }
 
+        /* ------------------ Submenu Trilhas ------------------ */
+        .nav-dropdown {
+            position: relative;
+            padding-bottom: 20px; /* Área extra para evitar gap */
+        }
+
+        .nav-dropdown .dropdown {
+            position: absolute;
+            top: calc(100% - 20px); /* Ajustado para compensar padding */
+            left: 0;
+            background: var(--card-background);
+            border: 1px solid var(--border-blue);
+            border-radius: 8px;
+            min-width: 200px;
+            padding: 0.4rem 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+            display: none;
+            z-index: 1100;
+        }
+
+        .nav-dropdown:hover .dropdown {
+            display: block;
+        }
+
+        .nav-dropdown .dropdown li {
+            list-style: none;
+        }
+
+        .nav-dropdown .dropdown li a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dropdown .dropdown li a:hover {
+            background: rgba(0,188,212,0.06);
+            color: var(--secondary-orange);
+        }
+
         /* ------------------ Seções ------------------ */
         section { padding:6rem 2rem; max-width:1200px; margin:auto; }
         .section-title { font-family: var(--font-display); font-size:2.8rem; color:var(--heading-color); text-align:center; margin-bottom:1.5rem; position:relative; padding-bottom:10px; }
@@ -199,10 +240,17 @@
             <ul>
                 <li><a href="#sobre" class="active">Sobre</a></li>
                 <li><a href="#areas">Áreas</a></li>
-                <li><a href="#trilhas">Trilhas</a></li>
+                <li class="nav-dropdown">
+                    <a href="#trilhas" class="dropdown-toggle">Trilhas <i class="fas fa-caret-down" style="margin-left:6px;"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="{{ route('trilhas.frontend') }}">Front-end</a></li>
+                        <li><a href="{{ route('trilhas.backend') }}">Back-end</a></li>
+                        <li><a href="{{ route('trilhas.mobile') }}">Desenvolvimento Mobile</a></li>
+                        <li><a href="{{ route('trilhas.datascience') }}">Ciência de Dados</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{ route('quiz.index') }}">Descubra Seu Perfil</a></li>
-                <li><a href="#equipe">Equipe</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="{{ route('contact') }}">Contato</a></li>
 
                 @guest
                 <li class="user-dropdown">
@@ -251,7 +299,8 @@
 
 {{-- ------------------ Footer ------------------ --}}
 <footer>
-    &copy; {{ date('Y') }} Programando Futuros. Todos os direitos reservados. | <a href="#contato">Contato</a>
+    &copy; {{ date('Y') }} Programando Futuros. Todos os direitos reservados. | 
+    <a href="{{ route('contact') }}">Contato</a>
 </footer>
 <script>
     particlesJS("particles-js", {

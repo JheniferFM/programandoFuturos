@@ -13,9 +13,15 @@ Route::get('/teste', function() {
     return view('test');
 });
 
+Route::get('/contato', function () {
+    return view('contact');
+})->name('contact');
+
 // Trilhas - apontando para o Controller
 Route::get('/trilhas/frontend', [TrilhaController::class, 'showFrontend'])->middleware('auth')->name('trilhas.frontend');
 Route::get('/trilhas/backend', [TrilhaController::class, 'showBackend'])->name('trilhas.backend');
+Route::get('/trilhas/mobile', [TrilhaController::class, 'showMobile'])->name('trilhas.mobile');
+Route::get('/trilhas/datascience', [TrilhaController::class, 'showDataScience'])->name('trilhas.datascience');
 
 // Autenticação
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
