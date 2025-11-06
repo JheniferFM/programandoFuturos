@@ -177,7 +177,12 @@
         /* ------------------ Footer ------------------ */
         footer { background-color: var(--card-background); padding:2rem; text-align:center; color:var(--text-color); border-top:2px solid var(--border-blue);}
         footer a { color:var(--secondary-orange); text-decoration:none; }
-        footer a:hover { color:var(--hover-light-orange); }
+        footer a:hover { color: var(--hover-light-orange); }
+
+        /* ------------------ Avatares (pf-avatar) ------------------ */
+        .pf-avatar { border-radius: 50%; object-fit: cover; display: inline-block; vertical-align: middle; }
+        .pf-avatar--header { width: 36px; height: 36px; border: 2px solid var(--primary-blue); box-shadow: 0 0 8px rgba(0,188,212,0.35); }
+        .pf-avatar--option { width: 44px; height: 44px; border: 2px solid rgba(255,255,255,0.18); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
     </style>
 </head>
 <body>
@@ -189,7 +194,7 @@
     {{-- ------------------ Cabeçalho ------------------ --}}
     <header class="tech-header">
         <div class="logo-wrapper">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="site-logo">
+            <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="site-logo">
             <div class="logo-text">
                 <span class="main-logo">&lt;Programando</span>
                 <span class="highlight-logo">Futuros/&gt;</span>
@@ -199,9 +204,7 @@
             <ul>
                 <li><a href="#sobre" class="active">Sobre</a></li>
                 <li><a href="#areas">Áreas</a></li>
-                <li><a href="#trilhas">Trilhas</a></li>
                 <li><a href="{{ route('quiz.index') }}">Descubra Seu Perfil</a></li>
-                <li><a href="#equipe">Equipe</a></li>
                 <li><a href="#contato">Contato</a></li>
 
                 @guest
@@ -221,7 +224,7 @@
                 <div class="profile-header" style="display:flex;align-items:center;gap:0.75rem;">
                     <div class="avatar">
                         <a href="#" id="userMenuToggle" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;">
-                            <img src="{{ asset(Auth::user()->character_avatar ? (str_starts_with(Auth::user()->character_avatar,'avatars/') ? Auth::user()->character_avatar : 'avatars/'.basename(Auth::user()->character_avatar)) : 'avatars/ninja-cat.svg') }}" alt="Avatar" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--primary-blue);">
+                            <img src="{{ asset(Auth::user()->character_avatar ? (str_starts_with(Auth::user()->character_avatar,'avatars/') ? Auth::user()->character_avatar : 'avatars/'.basename(Auth::user()->character_avatar)) : 'avatars/alien.svg') }}" alt="Avatar" class="pf-avatar pf-avatar--header">
                             <span style="margin-top:0.35rem;color:#fff;font-weight:600;font-size:0.95rem;">{{ Auth::user()->name }}</span>
                         </a>
                     </div>
@@ -243,15 +246,25 @@
     {{-- ------------------ Sobre ------------------ --}}
     <section id="sobre" class="about-section">
         <h2 class="section-title">O Que é o Programando Futuros?</h2>
-        <p class="section-subtitle">O Programando Futuros é um projeto idealizado e desenvolvido por estudantes do DF, com o objetivo de levar educação tecnológica a escolas públicas, estimulando inovação e cidadania digital.</p>
+        <p class="section-subtitle">O Programando Futuros é um projeto voltado para iniciantes em TI e para qualquer pessoa interessada em tecnologia, promovendo aprendizado acessível, inovação e cidadania digital.</p>
     </section>
 
   {{-- ------------------ Áreas ------------------ --}}
 @include('components.areas')
 
+{{-- (Removido) Trilhas de Aprendizado --}}
+{{-- @include('components.trilhas') --}}
+
+{{-- ------------------ Contato ------------------ --}}
+<section id="contato" style="padding:4rem 2rem; max-width:1200px; margin:auto; text-align:center;">
+  <h2 class="section-title">Contato</h2>
+  <p class="section-subtitle">Fale com a gente por e-mail</p>
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=programandofuturosprojeto@gmail.com" class="tech-button" target="_blank" rel="noopener" style="margin-top:1rem;">Enviar E-mail</a>
+</section>
+
 {{-- ------------------ Footer ------------------ --}}
 <footer>
-    &copy; {{ date('Y') }} Programando Futuros. Todos os direitos reservados. | <a href="#contato">Contato</a>
+    &copy; {{ date('Y') }} Programando Futuros. Todos os direitos reservados. 
 </footer>
 <script>
     particlesJS("particles-js", {
@@ -437,7 +450,12 @@
         <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
             <div style="display:flex;align-items:center;gap:0.8rem;">
                 <div class="ranking-emblem" style="width:56px;height:56px;">
-                    @php $avatar = Auth::user()->character_avatar ?? 'avatars/ninja-cat.svg'; @endphp
+                    @php
+                        $raw = Auth::user()->character_avatar ?? null;
+                        $avatar = $raw
+                            ? (str_starts_with($raw, 'avatars/') ? $raw : 'avatars/' . basename($raw))
+                            : 'avatars/ninja-cat.svg';
+                    @endphp
                     <img src="{{ asset($avatar) }}" alt="Avatar" style="width:40px;height:40px;border-radius:8px;object-fit:cover;" />
                 </div>
                 <div>
@@ -449,68 +467,68 @@
         <form method="POST" action="{{ route('avatar.update') }}" style="margin-top:0.6rem;">
             @csrf
             <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;">
-                @php $options = ['avatars/ninja-cat.svg','avatars/astronaut.svg','avatars/retro-robot.svg','avatars/wizard.svg','avatars/duck.svg','avatars/code-ninja.svg','avatars/robot.svg']; @endphp
+                @php $options = ['avatars/alien.svg','avatars/cat.svg','avatars/dog.svg','avatars/duck.svg','avatars/fox.svg','avatars/owl.svg','avatars/panda.svg']; @endphp
                 @foreach($options as $opt)
                     <label style="cursor:pointer;display:grid;place-items:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:0.4rem;">
                         <input type="radio" name="character_avatar" value="{{ $opt }}" @checked(($avatar ?? '') === $opt) style="margin-bottom:0.3rem;" />
-                        <img src="{{ asset($opt) }}" alt="{{ $opt }}" style="width:48px;height:48px;border-radius:8px;object-fit:cover;" />
-                    </label>
+                        <img src="{{ asset($opt) }}" alt="{{ $opt }}" class="pf-avatar pf-avatar--option" />
+                </label>
                 @endforeach
             </div>
             <button type="submit" class="tech-button" style="margin-top:0.6rem;">Salvar Avatar</button>
         </form>
-    </div>
-    @endauth
-
-    @guest
-    <div class="ranking-header">
-        <div class="ranking-emblem"><i class="fas fa-user"></i></div>
-        <div>
-            <div class="ranking-title">Seu Ranking</div>
-            <div class="ranking-sub">Faça login para ver seu rank e progresso</div>
         </div>
-    </div>
-    <div style="margin-top:0.8rem;">
-        <a href="{{ route('login') }}" class="tech-button">Entrar</a>
-    </div>
-    @endauth
+        @endauth
 
-    <!-- Rodapé do sidebar com ação de Sair -->
-    @auth
-    <div style="margin-top:auto;display:flex;justify-content:flex-end;">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="tech-button" style="background:#e74c3c;color:#fff;border:1px solid rgba(255,255,255,0.2);">Sair</button>
-        </form>
-    </div>
-    @endguest
-</aside>
-<script>
-    // Toggle do menu lateral de ranking
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggle = document.getElementById('userMenuToggle');
-        const sidebar = document.getElementById('rankingSidebar');
-        const overlay = document.getElementById('rankingOverlay');
-        const closeBtn = document.getElementById('sidebarClose');
+        @guest
+        <div class="ranking-header">
+            <div class="ranking-emblem"><i class="fas fa-user"></i></div>
+            <div>
+                <div class="ranking-title">Seu Ranking</div>
+                <div class="ranking-sub">Faça login para ver seu rank e progresso</div>
+            </div>
+        </div>
+        <div style="margin-top:0.8rem;">
+            <a href="{{ route('login') }}" class="tech-button">Entrar</a>
+        </div>
+        @endguest
 
-        function openSidebar() {
-            if (sidebar) sidebar.classList.add('open');
-            if (overlay) overlay.classList.add('visible');
-        }
-        function closeSidebar() {
-            if (sidebar) sidebar.classList.remove('open');
-            if (overlay) overlay.classList.remove('visible');
-        }
-
-        if (toggle) {
-            toggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                openSidebar();
-            });
-        }
-        if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
-        if (overlay) overlay.addEventListener('click', closeSidebar);
-    });
-</script>
-</body>
-</html>
+        <!-- Rodapé do sidebar com ação de Sair -->
+         @auth
+         <div style="margin-top:auto;display:flex;justify-content:flex-end;">
+             <form method="POST" action="{{ route('logout') }}">
+                 @csrf
+                 <button type="submit" class="tech-button" style="background:#e74c3c;color:#fff;border:1px solid rgba(255,255,255,0.2);">Sair</button>
+             </form>
+         </div>
+         @endauth
+     </aside>
+    <script>
+        // Toggle do menu lateral de ranking
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('userMenuToggle');
+            const sidebar = document.getElementById('rankingSidebar');
+            const overlay = document.getElementById('rankingOverlay');
+            const closeBtn = document.getElementById('sidebarClose');
+    
+            function openSidebar() {
+                if (sidebar) sidebar.classList.add('open');
+                if (overlay) overlay.classList.add('visible');
+            }
+            function closeSidebar() {
+                if (sidebar) sidebar.classList.remove('open');
+                if (overlay) overlay.classList.remove('visible');
+            }
+    
+            if (toggle) {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openSidebar();
+                });
+            }
+            if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+            if (overlay) overlay.addEventListener('click', closeSidebar);
+        });
+    </script>
+    </body>
+    </html>

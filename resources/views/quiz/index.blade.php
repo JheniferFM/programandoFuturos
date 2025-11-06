@@ -12,9 +12,7 @@
         </div>
         
         <div class="quiz-intro">
-            <div class="hero-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
+
             <h1>Descubra seu Perfil em TI</h1>
             <p>Responda algumas perguntas simples e descubra quais trilhas de Tecnologia da Informação combinam mais com você!</p>
             <div class="hero-stats">
@@ -153,30 +151,6 @@
         text-align: center;
         margin-bottom: 3rem;
         color: white;
-    }
-    
-    .hero-icon {
-        width: 80px;
-        height: 80px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 2rem;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        animation: float 3s ease-in-out infinite;
-    }
-    
-    .hero-icon i {
-        font-size: 2rem;
-        color: var(--primary-blue);
-    }
-    
-    @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
     }
     
     .quiz-intro h1 {

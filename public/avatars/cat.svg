@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bgCat" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="24" fill="url(#bgCat)"/>
+  <!-- Laptop -->
+  <rect x="32" y="44" width="64" height="36" rx="6" fill="#0b1020"/>
+  <rect x="38" y="50" width="52" height="24" rx="4" fill="#111827"/>
+  <rect x="28" y="84" width="72" height="10" rx="5" fill="#0b1020"/>
+  <!-- Code on screen -->
+  <g stroke="#93c5fd" stroke-width="3" stroke-linecap="round">
+    <path d="M46 58l10 6-10 6" fill="none"/>
+    <path d="M74 58l-10 6 10 6" fill="none"/>
+  </g>
+  <!-- Cat ears -->
+  <path d="M36 44l8-12 8 12" fill="#0b1020"/>
+  <path d="M76 44l8-12 8 12" fill="#0b1020"/>
+  <!-- Whiskers -->
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round">
+    <path d="M54 78h-12"/><path d="M54 82h-12"/>
+    <path d="M74 78h12"/><path d="M74 82h12"/>
+  </g>
+</svg>

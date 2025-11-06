@@ -141,7 +141,7 @@ class QuizController extends Controller
         return view('quiz.results', [
             'user' => $user,
             'recommendedTracks' => $user->recommended_tracks ?? [],
-
+            // 'availableTracks' => ['frontend', 'backend'], // Mantido na view por enquanto
         ]);
     }
 
