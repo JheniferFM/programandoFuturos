@@ -235,7 +235,7 @@
     {{-- ------------------ Cabeçalho ------------------ --}}
     <header class="tech-header">
         <div class="logo-wrapper">
-            <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="site-logo">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="site-logo">
             <div class="logo-text">
                 <span class="main-logo">&lt;Programando</span>
                 <span class="highlight-logo">Futuros/&gt;</span>

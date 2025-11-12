@@ -77,10 +77,13 @@ class AuthController extends Controller
 
         // Lista de avatares permitidos (paths de SVG)
         $allowed = [
-            'avatars/code-ninja.svg',
-            'avatars/robot.svg',
-            'avatars/wizard.svg',
+            'avatars/alien.svg',
+            'avatars/cat.svg',
+            'avatars/dog.svg',
             'avatars/duck.svg',
+            'avatars/fox.svg',
+            'avatars/owl.svg',
+            'avatars/panda.svg',
         ];
 
         if (!in_array($request->character_avatar, $allowed, true)) {
