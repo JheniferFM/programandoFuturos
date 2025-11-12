@@ -1,5 +1,5 @@
 {{-- resources/views/components/areas.blade.php --}}
-<div class="areas-section" id="areas">
+<div id="areas" class="areas-section">
     <style>
         .areas-section {
             padding: 4rem 2rem;

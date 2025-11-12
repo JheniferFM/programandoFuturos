@@ -1655,38 +1655,11 @@
                 title: 'Fundamentos de HTML',
                 description: 'Aprenda a estrutura básica da web com HTML5, elementos semânticos e boas práticas de marcação.',
                 points: 100,
-                detailedResources: {
-                    'Estrutura básica do HTML': [
-                        { name: 'MDN - Estrutura básica de documentos HTML', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/Getting_started_with_the_web/HTML_basics', type: 'Documentação' },
-                        { name: 'W3Schools - HTML Basic Structure', url: 'https://www.w3schools.com/html/html_basic.asp', type: 'Tutorial' },
-                        { name: 'Vídeo: Introdução ao HTML', url: 'https://www.youtube.com/watch?v=4dQtz1PpY9A', type: 'Vídeo' }
-                    ],
-                    'Tags semânticas (header, nav, main, footer)': [
-                        { name: 'MDN - Elementos semânticos HTML5', url: 'https://developer.mozilla.org/pt-BR/docs/Glossary/Semantics#sem%C3%A2ntica_no_html', type: 'Documentação' },
-                        { name: 'W3Schools - HTML5 Semantic Elements', url: 'https://www.w3schools.com/html/html5_semantic_elements.asp', type: 'Tutorial' },
-                        { name: 'Vídeo: HTML5 Semântico na Prática', url: 'https://www.youtube.com/watch?v=VcT6JY3h4fY', type: 'Vídeo' }
-                    ],
-                    'Formulários e validação': [
-                        { name: 'MDN - Formulários HTML', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/Forms', type: 'Documentação' },
-                        { name: 'W3Schools - HTML Forms and Validation', url: 'https://www.w3schools.com/html/html_forms.asp', type: 'Tutorial' },
-                        { name: 'Vídeo: Criando Formulários com HTML5', url: 'https://www.youtube.com/watch?v=ScMzIvxBSi4', type: 'Vídeo' }
-                    ],
-                    'Tabelas e listas': [
-                        { name: 'MDN - Tabelas HTML', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/HTML/Tables/Basics', type: 'Documentação' },
-                        { name: 'W3Schools - HTML Tables', url: 'https://www.w3schools.com/html/html_tables.asp', type: 'Tutorial' },
-                        { name: 'Vídeo: Como criar tabelas e listas em HTML', url: 'https://www.youtube.com/watch?v=BsDoLVMnmZs', type: 'Vídeo' }
-                    ],
-                    'Links e navegação': [
-                        { name: 'MDN - Elemento <a>', url: 'https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/a', type: 'Documentação' },
-                        { name: 'W3Schools - HTML Links', url: 'https://www.w3schools.com/html/html_links.asp', type: 'Tutorial' },
-                        { name: 'Vídeo: Criando menus e navegação com HTML', url: 'https://www.youtube.com/watch?v=I8KaDCUkb_s', type: 'Vídeo' }
-                    ],
-                    'Imagens e mídia': [
-                        { name: 'MDN - Elemento <img>', url: 'https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/img', type: 'Documentação' },
-                        { name: 'W3Schools - HTML Images', url: 'https://www.w3schools.com/html/html_images.asp', type: 'Tutorial' },
-                        { name: 'Vídeo: Trabalhando com Imagens e Mídia no HTML', url: 'https://www.youtube.com/watch?v=RBSGKlAvoiM', type: 'Vídeo' }
-                    ]
-                },
+                resources: [
+                    { name: 'MDN Web Docs - HTML', url: 'https://developer.mozilla.org/pt-BR/docs/Web/HTML', type: 'Documentação' },
+                    { name: 'HTML5 Semântico', url: 'https://www.w3schools.com/html/html5_semantic_elements.asp', type: 'Tutorial' },
+                    { name: 'Curso HTML Completo', url: 'https://www.youtube.com/watch?v=epDCjksKMmQ', type: 'Vídeo' }
+                ],
                 topics: [
                     'Estrutura básica do HTML',
                     'Tags semânticas (header, nav, main, footer)',
@@ -1723,6 +1696,11 @@
                 title: 'Estilização com CSS',
                 description: 'Domine CSS3, Flexbox, Grid e técnicas modernas de estilização para criar interfaces atrativas.',
                 points: 120,
+                resources: [
+                    { name: 'CSS Grid Guide', url: 'https://css-tricks.com/snippets/css/complete-guide-grid/', type: 'Guia' },
+                    { name: 'Flexbox Froggy', url: 'https://flexboxfroggy.com/', type: 'Jogo' },
+                    { name: 'CSS Animation', url: 'https://animate.style/', type: 'Biblioteca' }
+                ],
                 topics: [
                     'Seletores e especificidade',
                     'Box Model e posicionamento',
@@ -1731,38 +1709,6 @@
                     'Animações e transições',
                     'Responsividade e Media Queries'
                 ],
-                detailedResources: {
-                    'Seletores e especificidade': [
-                        { name: 'MDN - Seletores CSS', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/CSS_Selectors', type: 'Documentação' },
-                        { name: 'Guia de Especificidade CSS', url: 'https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/', type: 'Artigo' },
-                        { name: 'Vídeo: Seletores CSS na prática', url: 'https://www.youtube.com/watch?v=Hqzx5-xfG5E', type: 'Vídeo' }
-                    ],
-                    'Box Model e posicionamento': [
-                        { name: 'MDN - CSS Box Model', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/CSS/Building_blocks/Box_model', type: 'Documentação' },
-                        { name: 'W3Schools - CSS Position', url: 'https://www.w3schools.com/css/css_positioning.asp', type: 'Tutorial' },
-                        { name: 'Vídeo: Box Model explicado', url: 'https://www.youtube.com/watch?v=rIO5326FgPE', type: 'Vídeo' }
-                    ],
-                    'Flexbox para layouts': [
-                        { name: 'MDN - Flexbox', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/CSS_Flexible_Box_Layout', type: 'Documentação' },
-                        { name: 'Flexbox Froggy', url: 'https://flexboxfroggy.com/', type: 'Jogo' },
-                        { name: 'Vídeo: Flexbox na prática', url: 'https://www.youtube.com/watch?v=JJSoEo8JSnc', type: 'Vídeo' }
-                    ],
-                    'CSS Grid avançado': [
-                        { name: 'CSS-Tricks - Complete Guide to Grid', url: 'https://css-tricks.com/snippets/css/complete-guide-grid/', type: 'Guia' },
-                        { name: 'MDN - CSS Grid', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/CSS_Grid_Layout', type: 'Documentação' },
-                        { name: 'Vídeo: Grid Avançado', url: 'https://www.youtube.com/watch?v=EFafSYg-PkI', type: 'Vídeo' }
-                    ],
-                    'Animações e transições': [
-                        { name: 'MDN - CSS Transitions', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions', type: 'Documentação' },
-                        { name: 'Animate.css', url: 'https://animate.style/', type: 'Biblioteca' },
-                        { name: 'Vídeo: CSS Animations', url: 'https://www.youtube.com/watch?v=1Rs2ND1ryYc', type: 'Vídeo' }
-                    ],
-                    'Responsividade e Media Queries': [
-                        { name: 'MDN - Media Queries', url: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS/Media_Queries/Using_media_queries', type: 'Documentação' },
-                        { name: 'Guia de Responsividade CSS', url: 'https://www.w3schools.com/css/css_rwd_mediaqueries.asp', type: 'Tutorial' },
-                        { name: 'Vídeo: Layout Responsivo', url: 'https://www.youtube.com/watch?v=srvUrASNj0s', type: 'Vídeo' }
-                    ]
-                },
                 exercises: [
                     {
                         id: 'css_1',
@@ -1791,6 +1737,11 @@
                 title: 'JavaScript Básico',
                 description: 'Fundamentos da linguagem JavaScript, DOM manipulation e programação orientada a eventos.',
                 points: 150,
+                resources: [
+                    { name: 'JavaScript.info', url: 'https://javascript.info/', type: 'Tutorial' },
+                    { name: 'Eloquent JavaScript', url: 'https://eloquentjavascript.net/', type: 'Livro' },
+                    { name: 'MDN JavaScript', url: 'https://developer.mozilla.org/pt-BR/docs/Web/JavaScript', type: 'Documentação' }
+                ],
                 topics: [
                     'Variáveis e tipos de dados',
                     'Funções e escopo',
@@ -1799,38 +1750,6 @@
                     'Eventos e listeners',
                     'Promises e async/await'
                 ],
-                detailedResources: {
-                    'Variáveis e tipos de dados': [
-                        { name: 'MDN - Variáveis', url: 'https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Grammar_and_types#vari%C3%A1veis', type: 'Documentação' },
-                        { name: 'JavaScript.info - Variáveis', url: 'https://javascript.info/variables', type: 'Tutorial' },
-                        { name: 'Vídeo: Tipos de Dados em JS', url: 'https://www.youtube.com/watch?v=Ukg_U3CnJWI', type: 'Vídeo' }
-                    ],
-                    'Funções e escopo': [
-                        { name: 'MDN - Funções', url: 'https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions', type: 'Documentação' },
-                        { name: 'JavaScript.info - Funções', url: 'https://javascript.info/function-basics', type: 'Tutorial' },
-                        { name: 'Vídeo: Funções e Escopo', url: 'https://www.youtube.com/watch?v=0H7xfId6DRA', type: 'Vídeo' }
-                    ],
-                    'Arrays e objetos': [
-                        { name: 'MDN - Arrays', url: 'https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array', type: 'Documentação' },
-                        { name: 'MDN - Objetos', url: 'https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_Objects', type: 'Documentação' },
-                        { name: 'Vídeo: Arrays e Objetos em JS', url: 'https://www.youtube.com/watch?v=R8rmfD9Y5-c', type: 'Vídeo' }
-                    ],
-                    'DOM manipulation': [
-                        { name: 'MDN - DOM', url: 'https://developer.mozilla.org/pt-BR/docs/Web/API/Document_Object_Model/Introduction', type: 'Documentação' },
-                        { name: 'JavaScript.info - DOM', url: 'https://javascript.info/dom-nodes', type: 'Tutorial' },
-                        { name: 'Vídeo: Manipulação do DOM', url: 'https://www.youtube.com/watch?v=wiozYyXQEVk', type: 'Vídeo' }
-                    ],
-                    'Eventos e listeners': [
-                        { name: 'MDN - Eventos', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Building_blocks/Events', type: 'Documentação' },
-                        { name: 'JavaScript.info - Eventos', url: 'https://javascript.info/events', type: 'Tutorial' },
-                        { name: 'Vídeo: Eventos em JS', url: 'https://www.youtube.com/watch?v=XF1_MlZ5l6I', type: 'Vídeo' }
-                    ],
-                    'Promises e async/await': [
-                        { name: 'MDN - Promises', url: 'https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Promise', type: 'Documentação' },
-                        { name: 'JavaScript.info - Promises', url: 'https://javascript.info/promise-basics', type: 'Tutorial' },
-                        { name: 'Vídeo: Async/Await e Promises', url: 'https://www.youtube.com/watch?v=vn3tm0quoqE', type: 'Vídeo' }
-                    ]
-                },
                 exercises: [
                     {
                         id: 'js_1',
@@ -1859,6 +1778,11 @@
                 title: 'Frameworks Front-end',
                 description: 'Introdução aos principais frameworks: React, Vue.js e Angular para desenvolvimento moderno.',
                 points: 130,
+                resources: [
+                    { name: 'React Documentation', url: 'https://react.dev/', type: 'Documentação' },
+                    { name: 'Vue.js Guide', url: 'https://vuejs.org/guide/', type: 'Guia' },
+                    { name: 'Angular Tutorial', url: 'https://angular.io/tutorial', type: 'Tutorial' }
+                ],
                 topics: [
                     'Conceitos de componentes',
                     'Estado e props',
@@ -1867,38 +1791,6 @@
                     'Hooks e composição',
                     'Build e deploy'
                 ],
-                detailedResources: {
-                    'Conceitos de componentes': [
-                        { name: 'React - Componentes', url: 'https://react.dev/learn/components-and-props', type: 'Documentação' },
-                        { name: 'Vue.js - Componentes', url: 'https://vuejs.org/guide/essentials/component-basics.html', type: 'Guia' },
-                        { name: 'Angular - Componentes', url: 'https://angular.io/guide/architecture-components', type: 'Tutorial' }
-                    ],
-                    'Estado e props': [
-                        { name: 'React - State e Props', url: 'https://react.dev/learn/state-and-lifecycle', type: 'Documentação' },
-                        { name: 'Vue.js - Props e State', url: 'https://vuejs.org/guide/essentials/state.html', type: 'Guia' },
-                        { name: 'Angular - Input e Output', url: 'https://angular.io/guide/inputs-outputs', type: 'Tutorial' }
-                    ],
-                    'Roteamento SPA': [
-                        { name: 'React Router', url: 'https://reactrouter.com/en/main', type: 'Documentação' },
-                        { name: 'Vue Router', url: 'https://router.vuejs.org/', type: 'Guia' },
-                        { name: 'Angular Router', url: 'https://angular.io/guide/router', type: 'Tutorial' }
-                    ],
-                    'Gerenciamento de estado': [
-                        { name: 'React - Context API', url: 'https://react.dev/learn/context', type: 'Documentação' },
-                        { name: 'Vuex', url: 'https://vuex.vuejs.org/', type: 'Guia' },
-                        { name: 'NgRx', url: 'https://ngrx.io/', type: 'Tutorial' }
-                    ],
-                    'Hooks e composição': [
-                        { name: 'React - Hooks', url: 'https://react.dev/learn/hooks-intro', type: 'Documentação' },
-                        { name: 'Vue 3 - Composition API', url: 'https://vuejs.org/guide/essentials/composition-api-fundamentals.html', type: 'Guia' },
-                        { name: 'Angular - Serviços e DI', url: 'https://angular.io/guide/dependency-injection', type: 'Tutorial' }
-                    ],
-                    'Build e deploy': [
-                        { name: 'React - Deploy', url: 'https://react.dev/learn/deployment', type: 'Documentação' },
-                        { name: 'Vue.js - Build', url: 'https://cli.vuejs.org/guide/deployment.html', type: 'Guia' },
-                        { name: 'Angular - Build e Deploy', url: 'https://angular.io/guide/deployment', type: 'Tutorial' }
-                    ]
-                },
                 exercises: [
                     {
                         id: 'fw_1',
@@ -1923,10 +1815,16 @@
                     }
                 ]
             },
-           projects: {
+            projects: {
                 title: 'Projetos Práticos',
                 description: 'Aprofunde-se em tópicos avançados como performance, testes, PWAs e ferramentas de build modernas.',
                 points: 100,
+                resources: [
+                    { name: 'Web Performance', url: 'https://web.dev/performance/', type: 'Guia' },
+                    { name: 'Jest Testing Framework', url: 'https://jestjs.io/', type: 'Documentação' },
+                    { name: 'PWA Guide', url: 'https://web.dev/progressive-web-apps/', type: 'Tutorial' },
+                    { name: 'Webpack Documentation', url: 'https://webpack.js.org/', type: 'Build Tool' }
+                ],
                 topics: [
                     'Otimização de performance',
                     'Testes unitários e integração',
@@ -1935,38 +1833,6 @@
                     'Deploy e CI/CD',
                     'Acessibilidade web avançada'
                 ],
-                detailedResources: {
-                    'Otimização de performance': [
-                        { name: 'Web.dev - Performance', url: 'https://web.dev/performance/', type: 'Guia' },
-                        { name: 'MDN - Performance', url: 'https://developer.mozilla.org/pt-BR/docs/Web/Performance', type: 'Documentação' },
-                        { name: 'Vídeo: Performance Web', url: 'https://www.youtube.com/watch?v=OOUaEw3REXk', type: 'Vídeo' }
-                    ],
-                    'Testes unitários e integração': [
-                        { name: 'Jest Documentation', url: 'https://jestjs.io/', type: 'Documentação' },
-                        { name: 'Testing Library', url: 'https://testing-library.com/', type: 'Biblioteca' },
-                        { name: 'Vídeo: Testes em JS', url: 'https://www.youtube.com/watch?v=FgnxcUQ5vho', type: 'Vídeo' }
-                    ],
-                    'Progressive Web Apps (PWA)': [
-                        { name: 'PWA Guide', url: 'https://web.dev/progressive-web-apps/', type: 'Tutorial' },
-                        { name: 'MDN - PWA', url: 'https://developer.mozilla.org/pt-BR/docs/Web/Progressive_web_apps', type: 'Documentação' },
-                        { name: 'Vídeo: Criando uma PWA', url: 'https://www.youtube.com/watch?v=cmGr0RszH7Y', type: 'Vídeo' }
-                    ],
-                    'Ferramentas de build (Webpack, Vite)': [
-                        { name: 'Webpack Documentation', url: 'https://webpack.js.org/', type: 'Build Tool' },
-                        { name: 'Vite Documentation', url: 'https://vitejs.dev/', type: 'Build Tool' },
-                        { name: 'Vídeo: Webpack vs Vite', url: 'https://www.youtube.com/watch?v=Lr9WUkeYSA8', type: 'Vídeo' }
-                    ],
-                    'Deploy e CI/CD': [
-                        { name: 'GitHub Actions', url: 'https://docs.github.com/en/actions', type: 'Tutorial' },
-                        { name: 'Netlify Deploy', url: 'https://docs.netlify.com/', type: 'Guia' },
-                        { name: 'Vídeo: CI/CD na prática', url: 'https://www.youtube.com/watch?v=r8d2VxSbQf8', type: 'Vídeo' }
-                    ],
-                    'Acessibilidade web avançada': [
-                        { name: 'MDN - Accessibility', url: 'https://developer.mozilla.org/pt-BR/docs/Learn/Accessibility', type: 'Documentação' },
-                        { name: 'WebAIM', url: 'https://webaim.org/', type: 'Guia' },
-                        { name: 'Vídeo: Acessibilidade Web', url: 'https://www.youtube.com/watch?v=1m9l4f5k8RQ', type: 'Vídeo' }
-                    ]
-                },
                 exercises: [
                     {
                         id: 'adv_1',
@@ -2168,64 +2034,60 @@
         const topicItems = document.querySelectorAll('.topic-item');
 
         // Função para abrir o painel lateral
-// Função para abrir o painel lateral
-function openSidePanel(topicKey) {
-    const topic = topicsData[topicKey];
-    if (!topic) return;
+        function openSidePanel(topicKey) {
+            const topic = topicsData[topicKey];
+            if (!topic) return;
 
-    const completedExercises = progressTracker.data.exercisesCompleted[topicKey]?.length || 0;
-    const totalExercises = topic.exercises?.length || 0;
-    const isCompleted = progressTracker.data.topicProgress[topicKey]?.completed || false;
+            const completedExercises = progressTracker.data.exercisesCompleted[topicKey]?.length || 0;
+            const totalExercises = topic.exercises?.length || 0;
+            const isCompleted = progressTracker.data.topicProgress[topicKey]?.completed || false;
 
-    panelTitle.textContent = topic.title;
+            panelTitle.textContent = topic.title;
+            
+            panelContent.innerHTML = `
+                <div class="topic-overview">
+                    <p>${topic.description}</p>
+                    <div class="points-display">
+                        <strong>🎯 Pontos: ${topic.points} XP</strong>
+                    </div>
+                </div>
 
-    const topicsHtml = topic.topics.map(item => {
-        const detailed = topic.detailedResources?.[item] || [];
-        const detailedHtml = detailed.length
-            ? `<ul class="detailed-resource-list">
-                    ${detailed.map(r => `<li>
-                        <a href="${r.url}" target="_blank" class="resource-link">${r.name}</a> 
-                        <span class="resource-type">${r.type}</span>
-                    </li>`).join('')}
-               </ul>`
-            : '';
-        return `<li>
-                    <strong>${item}</strong>
-                    ${detailedHtml}
-                </li>`;
-    }).join('');
+                <div class="resource-section">
+                    <h4>📚 O que você vai aprender:</h4>
+                    <ul class="topic-list">
+                        ${topic.topics.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
 
-    panelContent.innerHTML = `
-        <div class="topic-overview">
-            <p>${topic.description}</p>
-            <div class="points-display">
-                <strong>🎯 Pontos: ${topic.points} XP</strong>
-            </div>
-        </div>
+                <div class="resource-section">
+                    <h4>🔗 Recursos de Aprendizado:</h4>
+                    <ul class="resource-list">
+                        ${topic.resources.map(resource => `
+                            <li class="resource-item">
+                                <a href="${resource.url}" class="resource-link" target="_blank">
+                                    ${resource.name}
+                                </a>
+                                <span class="resource-type">${resource.type}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
 
-        <div class="resource-section">
-            <h4>📚 O que você vai aprender:</h4>
-            <ul class="topic-list">
-                ${topicsHtml}
-            </ul>
-        </div>
+                ${!isCompleted ? `
+                    <button class="start-topic-btn" onclick="startTopic('${topicKey}')">
+                        ${completedExercises > 0 ? '📖 Continuar Exercícios' : '🚀 Começar Exercícios'}
+                    </button>
+                ` : `
+                    <div class="completed-topic">
+                        <p style="text-align: center; color: #4caf50; font-weight: bold;">
+                            ✅ Tópico Concluído!
+                        </p>
+                    </div>
+                `}
+            `;
 
-        ${!isCompleted ? `
-            <button class="start-topic-btn" onclick="startTopic('${topicKey}')">
-                ${completedExercises > 0 ? '📖 Continuar Exercícios' : '🚀 Começar Exercícios'}
-            </button>
-        ` : `
-            <div class="completed-topic">
-                <p style="text-align: center; color: #4caf50; font-weight: bold;">
-                    ✅ Tópico Concluído!
-                </p>
-            </div>
-        `}
-    `;
-
-    sidePanel.classList.add('active');
-}
-
+            sidePanel.classList.add('active');
+        }
 
         // Função para fechar o painel lateral
         function closeSidePanel() {
