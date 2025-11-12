@@ -130,8 +130,8 @@
                 <i class="fas fa-envelope contact-icon"></i>
                 <h2 class="contact-method-title">Email</h2>
                 <p>Para dúvidas e parcerias</p>
-                <a href="mailto:alexisma03@gmail.com" class="contact-link">
-                    alexisma03@gmail.com <i class="fas fa-external-link-alt"></i>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=programandofuturosprojeto@gmail.com" class="contact-link">
+                    Entre em contato <i class="fas fa-external-link-alt"></i>
                 </a>
             </div>
 
