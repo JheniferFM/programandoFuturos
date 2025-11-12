@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bgPanda2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#0b1020"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="24" fill="url(#bgPanda2)"/>
+  <path d="M42 86c0-9 7-16 16-16 4-9 14-12 21-9 9 0 16 7 16 16 0 10-8 18-18 18H60c-10 0-18-8-18-18Z" fill="#ffffff"/>
+  <rect x="66" y="88" width="20" height="14" rx="3" fill="#0b1020"/>
+  <path d="M76 88v-6a6 6 0 0 0-12 0v6" stroke="#0b1020" stroke-width="3" fill="none"/>
+</svg>

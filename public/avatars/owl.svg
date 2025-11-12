@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bgOwl2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="24" fill="url(#bgOwl2)"/>
+  <!-- Code screen as owl chest -->
+  <rect x="40" y="50" width="48" height="40" rx="8" fill="#111827"/>
+  <path d="M48 66l10 6-10 6" stroke="#93c5fd" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M64 78h16" stroke="#93c5fd" stroke-width="4" stroke-linecap="round"/>
+  <!-- Eyes -->
+  <circle cx="50" cy="46" r="8" fill="#ffffff"/>
+  <circle cx="78" cy="46" r="8" fill="#ffffff"/>
+  <circle cx="50" cy="46" r="3" fill="#0b1020"/>
+  <circle cx="78" cy="46" r="3" fill="#0b1020"/>
+</svg>

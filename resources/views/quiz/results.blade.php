@@ -138,7 +138,7 @@
     {{-- ------------------ Cabeçalho ------------------ --}}
     <header class="tech-header">
         <div class="logo-wrapper">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="site-logo">
+            <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="site-logo">
             <div class="logo-text">
                 <span class="main-logo">&lt;Programando</span>
                 <span class="highlight-logo">Futuros/&gt;</span>
@@ -213,10 +213,23 @@
             @if(!empty($recommendedTracks))
                 <div class="tracks-grid">
                     @foreach($recommendedTracks as $index => $track)
+                        @php
+                            $availableTracks = ['frontend', 'backend'];
+                            $isAvailable = in_array($track['track'], $availableTracks);
+                            $trackNames = [
+                                'frontend' => 'Desenvolvimento Front-end',
+                                'backend' => 'Desenvolvimento Back-end',
+                                'mobile' => 'Desenvolvimento Mobile',
+                                'data' => 'Ciência de Dados',
+                                'devops' => 'DevOps',
+                                'design' => 'UI/UX Design'
+                            ];
+                            $trackTitle = $trackNames[$track['track']] ?? ucfirst($track['track']);
+                        @endphp
                         <div class="track-card {{ $index === 0 ? 'primary' : '' }}">
                             <div class="track-rank">#{{ $index + 1 }}</div>
                             <div class="track-header">
-                                <h3>{{ ucfirst($track['track']) }}</h3>
+                                <h3>{{ $trackTitle }}</h3>
                                 <div class="match-percentage">{{ $track['match_percentage'] }}% Match</div>
                             </div>
                             <p class="track-description">
@@ -242,9 +255,16 @@
                                     @default
                                         Trilha de programação especializada
                                 @endswitch
+                                @if(!$isAvailable)
+                                    <br><strong>Em breve:</strong> Esta trilha estará disponível em breve. No momento, as trilhas disponíveis são Front-end e Back-end.
+                                @endif
                             </p>
                             <div class="track-actions">
-                                <a href="/trilhas/{{ $track['track'] }}" class="tech-button">Começar Trilha</a>
+                                @if($isAvailable)
+                                    <a href="/trilhas/{{ $track['track'] }}" class="tech-button">Começar Trilha</a>
+                                @else
+                                    <span class="tech-button-secondary" style="cursor: not-allowed; opacity: 0.6;">Em breve</span>
+                                @endif
                             </div>
                         </div>
                     @endforeach
