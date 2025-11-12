@@ -130,7 +130,7 @@
                 <i class="fas fa-envelope contact-icon"></i>
                 <h2 class="contact-method-title">Email</h2>
                 <p>Para dúvidas e parcerias</p>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=programandofuturosprojeto@gmail.com" class="contact-link">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=programandofuturosprojeto@gmail.com" class="contact-link" target="_blank" rel="noopener">
                     Entre em contato <i class="fas fa-external-link-alt"></i>
                 </a>
             </div>
@@ -139,7 +139,7 @@
                 <i class="fab fa-github contact-icon"></i>
                 <h2 class="contact-method-title">GitHub</h2>
                 <p>Acompanhe nosso projeto</p>
-                <a href="https://github.com/ProgramandoFuturos" target="_blank" class="contact-link">
+                <a href="https://github.com/ProgramandoFuturos" target="_blank" class="contact-link" rel="noopener">
                     ProgramandoFuturos <i class="fas fa-external-link-alt"></i>
                 </a>
             </div>
