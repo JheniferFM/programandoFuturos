@@ -8,7 +8,9 @@
         <!-- Botão de voltar -->
         <div class="mb-6">
             <a href="{{ route('home') }}" class="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors duration-300 text-sm font-medium">
-                <i class="fas fa-arrow-left"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M15 8a.5.5 0 0 1-.5.5H3.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L3.707 7.5H14.5A.5.5 0 0 1 15 8"/>
+                </svg>
                 Voltar ao início
             </a>
         </div>
@@ -53,6 +55,9 @@
                         Fazer Quiz
                     </a>
                     <a href="/" class="block w-full text-center bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:8px;">
+                            <path d="M15 8a.5.5 0 0 1-.5.5H3.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L3.707 7.5H14.5A.5.5 0 0 1 15 8"/>
+                        </svg>
                         Voltar ao Início
                     </a>
                 </div>
@@ -65,9 +70,9 @@
                     <div class="text-4xl font-bold text-white mb-2">{{ auth()->user()->level ?? 1 }}</div>
                     <p class="text-gray-300 mb-4">Nível Atual</p>
                     <div class="w-full bg-gray-700 rounded-full h-3">
-                        <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full" style="width: {{ auth()->user()->getLevelProgress() ?? 0 }}%"></div>
+                        <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full" style="width: {{ auth()->user()->level_progress ?? 0 }}%"></div>
                     </div>
-                    <p class="text-gray-300 text-sm mt-2">{{ auth()->user()->getLevelProgress() ?? 0 }}% para o próximo nível</p>
+                    <p class="text-gray-300 text-sm mt-2">{{ auth()->user()->level_progress ?? 0 }}% para o próximo nível</p>
                 </div>
             </div>
         </div>

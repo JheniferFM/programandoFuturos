@@ -224,6 +224,26 @@
         .pf-avatar { border-radius: 50%; object-fit: cover; display: inline-block; vertical-align: middle; }
         .pf-avatar--header { width: 36px; height: 36px; border: 2px solid var(--primary-blue); box-shadow: 0 0 8px rgba(0,188,212,0.35); }
         .pf-avatar--option { width: 44px; height: 44px; border: 2px solid rgba(255,255,255,0.18); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        img, svg { max-width: 100%; height: auto; }
+
+        @media (max-width: 768px) {
+            .tech-header { padding: 0.75rem 1rem; flex-direction: column; gap: 0.75rem; }
+            .site-logo { height: 36px; margin-right: 8px; }
+            .logo-text .main-logo, .logo-text .highlight-logo { font-size: 1.4rem; }
+            .tech-nav ul { flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+            .nav-dropdown .dropdown { position: static; top: auto; left: auto; width: 100%; min-width: 0; box-shadow: none; border-radius: 8px; }
+            .nav-dropdown:focus-within .dropdown, .nav-dropdown .dropdown-toggle:focus + .dropdown { display: block; }
+            section { padding: 3rem 1rem; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-text { font-size: 1rem; }
+            .areas-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+            .area-card { padding: 1.5rem; }
+            .area-icon { width: 70px; height: 70px; font-size: 2.2rem; }
+            .team-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
+            .section-title { font-size: 2rem; }
+            .section-subtitle { font-size: 1rem; }
+            .user-dropdown .dropdown-menu { position: static; min-width: 100%; box-shadow: none; }
+        }
     </style>
 </head>
 <body>
@@ -245,6 +265,8 @@
             <ul>
                 <li><a href="#sobre" class="active">Sobre</a></li>
                 <li><a href="#areas">Áreas</a></li>
+                <li><a href="{{ route('quiz.index') }}">Descubra Seu Perfil</a></li>
+                <li><a href="{{ route('contact') }}">Contato</a></li>
                 <li class="nav-dropdown">
                     <a href="#trilhas" class="dropdown-toggle">Trilhas <i class="fas fa-caret-down" style="margin-left:6px;"></i></a>
                     <ul class="dropdown">
@@ -254,8 +276,6 @@
                         <li><a href="{{ route('trilhas.datascience') }}">Ciência de Dados</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('quiz.index') }}">Descubra Seu Perfil</a></li>
-                <li><a href="{{ route('contact') }}">Contato</a></li>
 
                 @guest
                 <li class="user-dropdown">
@@ -326,20 +346,56 @@
             "opacity": { "value": 0.5 },
             "size": { "value": 3 },
             "line_linked": { "enable": true, "distance": 150, "color": "#00bcd4", "opacity": 0.4, "width": 1 },
-            "move": { "enable": true, "speed": 4 }
+            "move": { "enable": true, "speed": 4, "out_mode": "out", "attract": { "enable": false } }
         },
         "interactivity": {
+            "detect_on": "canvas",
             "events": {
-                "onhover": { "enable": true, "mode": "grab" },
-                "onclick": { "enable": true, "mode": "push" }
+                "onhover": { "enable": true, "mode": ["grab","repulse"] },
+                "onclick": { "enable": true, "mode": ["push","bubble"] },
+                "resize": true
             },
             "modes": {
-                "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
-                "push": { "particles_nb": 4 }
+                "grab": { "distance": 200, "line_linked": { "opacity": 1 } },
+                "bubble": { "distance": 300, "size": 10, "duration": 2.5, "opacity": 0.9, "speed": 3.2 },
+                "repulse": { "distance": 240, "duration": 0.6 },
+                "push": { "particles_nb": 6 },
+                "remove": { "particles_nb": 2 }
             }
         },
         "retina_detect": true
     });
+    (function(){
+        var el = document.getElementById('particles-js');
+        if(!el) return;
+        var baseColorA = '#00bcd4';
+        var baseColorB = '#FF8E53';
+        var current = 'A';
+        el.addEventListener('mousemove', function(e){
+            var r = el.getBoundingClientRect();
+            var nx = (e.clientX - r.left) / r.width - 0.5;
+            var ny = (e.clientY - r.top) / r.height - 0.5;
+            el.style.transform = 'translate3d(' + (nx*6) + 'px,' + (ny*6) + 'px,0)';
+        });
+        el.addEventListener('mouseleave', function(){
+            el.style.transform = 'translate3d(0,0,0)';
+        });
+        el.addEventListener('dblclick', function(){
+            var p = (window.pJSDom && window.pJSDom[0]) ? window.pJSDom[0].pJS : null;
+            if(!p) return;
+            current = current === 'A' ? 'B' : 'A';
+            var c = current === 'A' ? baseColorA : baseColorB;
+            p.particles.color.value = c;
+            p.particles.line_linked.color = c;
+            p.fn.particlesRefresh();
+        });
+        window.addEventListener('scroll', function(){
+            var p = (window.pJSDom && window.pJSDom[0]) ? window.pJSDom[0].pJS : null;
+            if(!p) return;
+            var s = Math.min(8, 4 + window.scrollY/400);
+            p.particles.move.speed = s;
+        }, { passive: true });
+    })();
 </script>
 <style>
     /* ------------------ Sidebar de Ranking (Paleta da Plataforma) ------------------ */
