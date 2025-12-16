@@ -1,0 +1,75 @@
+<?php
+
+return [
+    'accepted' => 'O campo :attribute deve ser aceito.',
+    'active_url' => 'O campo :attribute não é uma URL válida.',
+    'after' => 'O campo :attribute deve ser uma data posterior a :date.',
+    'alpha' => 'O campo :attribute deve conter apenas letras.',
+    'alpha_dash' => 'O campo :attribute deve conter apenas letras, números, traços e sublinhados.',
+    'alpha_num' => 'O campo :attribute deve conter apenas letras e números.',
+    'array' => 'O campo :attribute deve ser um array.',
+    'before' => 'O campo :attribute deve ser uma data anterior a :date.',
+    'between' => [
+        'numeric' => 'O campo :attribute deve estar entre :min e :max.',
+        'file' => 'O arquivo :attribute deve ter entre :min e :max kilobytes.',
+        'string' => 'O campo :attribute deve ter entre :min e :max caracteres.',
+        'array' => 'O campo :attribute deve ter entre :min e :max itens.',
+    ],
+    'boolean' => 'O campo :attribute deve ser verdadeiro ou falso.',
+    'confirmed' => 'A confirmação de :attribute não confere.',
+    'date' => 'O campo :attribute não é uma data válida.',
+    'date_format' => 'O campo :attribute não corresponde ao formato :format.',
+    'different' => 'Os campos :attribute e :other devem ser diferentes.',
+    'digits' => 'O campo :attribute deve ter :digits dígitos.',
+    'digits_between' => 'O campo :attribute deve ter entre :min e :max dígitos.',
+    'email' => 'Informe um :attribute válido.',
+    'exists' => 'O :attribute selecionado é inválido.',
+    'file' => 'O campo :attribute deve ser um arquivo.',
+    'filled' => 'O campo :attribute é obrigatório.',
+    'image' => 'O campo :attribute deve ser uma imagem.',
+    'in' => 'O :attribute selecionado é inválido.',
+    'integer' => 'O campo :attribute deve ser um número inteiro.',
+    'ip' => 'O campo :attribute deve ser um IP válido.',
+    'json' => 'O campo :attribute deve ser uma string JSON válida.',
+    'max' => [
+        'numeric' => 'O campo :attribute não pode ser maior que :max.',
+        'file' => 'O arquivo :attribute não pode ser maior que :max kilobytes.',
+        'string' => 'O campo :attribute não pode ter mais que :max caracteres.',
+        'array' => 'O campo :attribute não pode ter mais que :max itens.',
+    ],
+    'mimes' => 'O campo :attribute deve ser um arquivo do tipo: :values.',
+    'min' => [
+        'numeric' => 'O campo :attribute deve ser no mínimo :min.',
+        'file' => 'O arquivo :attribute deve ter no mínimo :min kilobytes.',
+        'string' => 'O campo :attribute deve ter no mínimo :min caracteres.',
+        'array' => 'O campo :attribute deve ter no mínimo :min itens.',
+    ],
+    'not_in' => 'O :attribute selecionado é inválido.',
+    'numeric' => 'O campo :attribute deve ser um número.',
+    'present' => 'O campo :attribute deve estar presente.',
+    'regex' => 'O formato de :attribute é inválido.',
+    'required' => 'O campo :attribute é obrigatório.',
+    'same' => 'Os campos :attribute e :other devem ser iguais.',
+    'size' => [
+        'numeric' => 'O campo :attribute deve ser :size.',
+        'file' => 'O arquivo :attribute deve ter :size kilobytes.',
+        'string' => 'O campo :attribute deve ter :size caracteres.',
+        'array' => 'O campo :attribute deve conter :size itens.',
+    ],
+    'string' => 'O campo :attribute deve ser uma string.',
+    'unique' => 'O campo :attribute já está em uso.',
+    'url' => 'O campo :attribute deve ser uma URL válida.',
+
+    'attributes' => [
+        'email' => 'e-mail',
+        'password' => 'senha',
+        'name' => 'nome',
+    ],
+
+    'custom' => [
+        'email' => [
+            'unique' => 'Este e-mail já está cadastrado.',
+        ],
+    ],
+];
+

@@ -148,13 +148,4 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const cards = document.querySelectorAll(".area-card:not(.coming-soon)");
-        cards.forEach(card => {
-            card.addEventListener("click", () => {
-                alert(`Você clicou na área: ${card.querySelector('h2').innerText}`);
-            });
-        });
-    });
-</script>
+

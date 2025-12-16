@@ -4,9 +4,14 @@
 @section('content')
 <style>
     /* ------------------ Registro - Estilos ------------------ */
+    * {
+        box-sizing: border-box;
+    }
+
     body {
         background-color: #1a1a2e;
         font-family: 'Montserrat', sans-serif;
+        margin: 0;
     }
 
     .auth-container {
@@ -29,6 +34,18 @@
         color: #e0e0e0;
     }
 
+    @media (max-width: 480px) {
+        .auth-container {
+            padding: 1rem;
+        }
+        .auth-card {
+            padding: 1.5rem;
+        }
+        .auth-card h2 {
+            font-size: 1.5rem;
+        }
+    }
+
     .auth-card h2 {
         text-align: center;
         font-family: 'Orbitron', sans-serif;
@@ -45,7 +62,9 @@
     }
 
     form input {
+        display: block;
         width: 100%;
+        max-width: 100%;
         padding: 0.8rem;
         margin-bottom: 1rem;
         border-radius: 8px;
@@ -112,7 +131,7 @@
             Voltar ao início
         </a>
         <h2>Cadastro</h2>
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" novalidate>
             @csrf
             <label for="name">Nome</label>
             <input type="text" id="name" name="name" value="{{ old('name') }}" required>

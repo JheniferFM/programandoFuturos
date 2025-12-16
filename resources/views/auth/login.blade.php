@@ -4,12 +4,21 @@
 @section('content')
 <div class="auth-container">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
         .auth-container {
             min-height: 100vh;
             display:flex;
             justify-content:center;
             align-items:center;
             background-color: #1a1a2e; /* background-dark-blue */
+            padding: 1rem;
         }
         .auth-card {
             background-color: #16213e;
@@ -20,6 +29,11 @@
             color: #e0e0e0;
             box-shadow: 0 5px 20px rgba(0,188,212,0.3);
         }
+        @media (max-width: 480px) {
+            .auth-card {
+                padding: 1.5rem;
+            }
+        }
         .auth-card h2 {
             font-family: 'Orbitron', sans-serif;
             text-align:center;
@@ -28,7 +42,9 @@
         }
         .auth-card label { display:block; margin-bottom:0.5rem; }
         .auth-card input {
+            display: block;
             width:100%;
+            max-width: 100%;
             padding:0.8rem;
             margin-bottom:1rem;
             border-radius:10px;
@@ -37,6 +53,7 @@
             color:#e0e0e0;
         }
         .auth-card button {
+            display: block;
             width:100%;
             padding:0.9rem;
             border:none;
@@ -69,7 +86,7 @@
             Voltar ao início
         </a>
         <h2>Login</h2>
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" novalidate>
             @csrf
             <label for="email">Email</label>
             <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus>

@@ -472,6 +472,7 @@
             display: flex;
             gap: 1rem;
             justify-content: flex-end;
+            margin-top: 0.75rem;
         }
 
         .btn-secondary {
@@ -505,6 +506,7 @@
 
         .exercise-feedback {
             margin-top: 1rem;
+            margin-bottom: 1rem;
             padding: 1rem;
             border-radius: 10px;
             display: none;
@@ -1215,6 +1217,23 @@
         .course-button:hover {
             background-color: transparent;
             color: var(--secondary-orange);
+        }
+        @media (max-width: 768px) {
+            .trilha-container { padding: 0 1rem; }
+            .trilha-header { flex-direction: column; gap: 1rem; }
+            .trilha-title { font-size: 1.8rem; text-align: center; }
+            .progress-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+            .progress-stats { flex-wrap: wrap; gap: 1rem; }
+            .trilha-interactive { flex-direction: column; gap: 1rem; }
+            .topic-number { width: 40px; height: 40px; margin-right: 1rem; font-size: 1rem; }
+            .panel-content { padding: 1rem; }
+            .side-panel { width: 100%; right: -100%; }
+            .side-panel.active { right: 0; }
+            .courses-container { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+            .exercise-content { max-width: 480px; width: 95%; padding: 1rem; }
+        .celebration-content { padding: 1rem; }
+            .exercise-feedback { margin-bottom: 1.25rem; }
+            .exercise-actions { margin-top: 1rem; }
         }
     </style>
 
